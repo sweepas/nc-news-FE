@@ -1,6 +1,7 @@
 import { Route, Routes, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SingleArticle from "./SingleArticle";
 
 function Articles() {
   const [allArticles, setArticles] = useState([]);
@@ -14,7 +15,7 @@ function Articles() {
       .then((body) => {
         setArticles(body.articles);
       });
-  });
+  }, []);
   return (
     <div className="articles-container">
       <ul>
@@ -30,13 +31,16 @@ function Articles() {
               <div className="article-menu">
                 <p>upvotes {article.votes}</p>
                 <p>{article.topic}</p>
+                <Link to={`/articles/${article.article_id}`}>Read More..</Link>
                 <p>Comments</p>
-                <p>Read article</p>
               </div>
             </li>
           );
         })}
       </ul>
+      <Routes>
+        <Route path=":article_id" element={<SingleArticle />} />
+      </Routes>
     </div>
   );
 }

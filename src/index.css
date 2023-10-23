@@ -4,12 +4,21 @@
   justify-content: center;
   list-style: none;
   padding: 0;
+  
+}
+.articles-container li {
+  border: 2px solid rgb(201, 199, 199);
+  padding: 10px;
+  border-radius: 20px;
+  margin: 20px;
+  list-style: none;
 }
 
 .article-img {
   max-width: 100%;
   height: auto;
   margin-top: 10px;
+  border-radius: 20px;
 }
 .article-menu {
   display: flex;

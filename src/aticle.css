@@ -1,0 +1,26 @@
+
+h2 {
+    font-size: 24px;
+    margin: 0;
+    color: red;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+}
+
+.single-article-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+.single-article-container input{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+  }
