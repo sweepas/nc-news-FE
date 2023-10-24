@@ -1,0 +1,19 @@
+.comment-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    
+}
+.comment-container li {
+    list-style: none;
+    border: 2px solid rgb(201, 199, 199);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+.comment-container div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link, Route, Routes } from "react-router-dom";
 import axios from "axios";
-import "../aticle.css";
+import "../article.css";
 
 function SingleArticle() {
   const { article_id } = useParams();
   const [article, setSingleArticle] = useState({});
   const [error, setError] = useState(null);
-  console.log(article_id);
+  const [comment, setCommentById] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,7 +23,6 @@ function SingleArticle() {
         if (body.msg === "item not found") {
           setError(body.msg);
         }
-        console.log(body.article);
         setSingleArticle(body.article);
       })
       .catch((error) => {
@@ -29,25 +30,38 @@ function SingleArticle() {
       });
   }, []);
 
+  function handleSubmit(e) {
+    setCommentById("comment");
+  }
+
+  function handleChange(e) {
+    setCommentById(e.target.value);
+  }
+
   if (error) {
-    return <h1>Error</h1>;
+    return <p>Error</p>;
   }
   return (
-    <div className="single-article-container ">
-      <h2>{article.title}</h2>
-      <p>{article.created_at}</p>
-      <p>by {article.author}</p>
-      <img src={article.article_img_url} alt={`an image of ${article.topic}`} />
-      <p>Comment count {article.comment_count}</p>
-      <p>{article.votes}</p>
-      <p>Read comments</p>
-      <p>Topics: {article.topic}</p>
-      <p>{article.body}</p>
-      <form action="submit">
-        <input type="text" />
-        <button>Submit comment</button>
-      </form>
-    </div>
+    <>
+      <div className="single-article-container ">
+        <h2>{article.title}</h2>
+        <p>{article.created_at}</p>
+        <p>by {article.author}</p>
+        <img
+          src={article.article_img_url}
+          alt={`an image of ${article.topic}`}
+        />
+        <p>Comment count {article.comment_count}</p>
+        <p>{article.votes}</p>
+        <Link to={`/articles/${article_id}/comments`}>All comments</Link>
+        <p>Topics: {article.topic}</p>
+        <p>{article.body}</p>
+        <form action="submit">
+          <input type="text" onChange={handleChange} />
+          <button onClick={handleSubmit}>Submit comment</button>
+        </form>
+      </div>
+    </>
   );
 }
 
