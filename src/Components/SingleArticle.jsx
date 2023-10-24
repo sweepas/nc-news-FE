@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link, Route, Routes } from "react-router-dom";
-import axios from "axios";
+import { getArticleById, patchArticle } from "../api/api";
+import Voter from "./Voter";
 import "../article.css";
 
 function SingleArticle() {
@@ -12,13 +13,7 @@ function SingleArticle() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(
-        `https://nc-news-be-project-lndv.onrender.com/api/articles/${article_id}`
-      )
-      .then((response) => {
-        return response.data;
-      })
+    getArticleById(article_id)
       .then((body) => {
         if (body.msg === "item not found") {
           setError(body.msg);
@@ -29,6 +24,13 @@ function SingleArticle() {
         setError(error);
       });
   }, []);
+
+  const updateVotes = (newLikes) => {
+    setSingleArticle({ ...article, votes: newLikes });
+    patchArticle(article.article_id, newLikes).catch((error) => {
+      setError(error.msg);
+    });
+  };
 
   function handleSubmit(e) {
     setCommentById("comment");
@@ -55,6 +57,7 @@ function SingleArticle() {
         <p>{article.votes}</p>
         <Link to={`/articles/${article_id}/comments`}>All comments</Link>
         <p>Topics: {article.topic}</p>
+        <Voter likes={article.votes} update={updateVotes} />
         <p>{article.body}</p>
         <form action="submit">
           <input type="text" onChange={handleChange} />
