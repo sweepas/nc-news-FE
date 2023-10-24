@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import Articles from "./Components/Articles";
 import Nav from "./Components/Nav";
 import SingleArticle from "./Components/SingleArticle";
+import AllComments from "./Components/AllComents";
 
 function App() {
   return (
@@ -13,9 +14,15 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/nav"></Route>
         <Route path="/articles/*" element={<Articles />}></Route>
-        <Route path="/articles/:article_id" element={<SingleArticle />}></Route>
+        <Route
+          path="/articles/:article_id/*"
+          element={<SingleArticle />}
+        ></Route>
+        <Route
+          path="/articles/:article_id/comments"
+          element={<AllComments />}
+        ></Route>
       </Routes>
     </div>
   );

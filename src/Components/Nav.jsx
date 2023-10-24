@@ -1,12 +1,18 @@
 import { Route, Routes, NavLink } from "react-router-dom";
-import Home from "./Home";
+import "../nav.css";
 
 function Nav() {
   return (
-    <nav>
-      <NavLink to="/">Home |</NavLink>
-      <NavLink to="/articles"> Articles |</NavLink>
-    </nav>
+    <div className="nav-container">
+      <nav className="nav-bar">
+        <NavLink to="/" className="nav-link">
+          Home |
+        </NavLink>
+        <NavLink to="/articles" className="nav-link">
+          Articles |
+        </NavLink>
+      </nav>
+    </div>
   );
 }
 export default Nav;

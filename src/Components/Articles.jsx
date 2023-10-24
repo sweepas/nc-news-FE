@@ -1,7 +1,6 @@
-import { Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import SingleArticle from "./SingleArticle";
 
 function Articles() {
   const [allArticles, setArticles] = useState([]);
@@ -38,9 +37,6 @@ function Articles() {
           );
         })}
       </ul>
-      <Routes>
-        <Route path=":article_id" element={<SingleArticle />} />
-      </Routes>
     </div>
   );
 }
