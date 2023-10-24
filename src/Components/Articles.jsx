@@ -1,20 +1,16 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { getArticles } from "../api/api";
 
 function Articles() {
   const [allArticles, setArticles] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://nc-news-be-project-lndv.onrender.com/api/articles")
-      .then((response) => {
-        return response.data;
-      })
-      .then((body) => {
-        setArticles(body.articles);
-      });
+    getArticles().then((body) => {
+      setArticles(body.articles);
+    });
   }, []);
+
   return (
     <div className="articles-container">
       <ul>

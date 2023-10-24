@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { getComments } from "../api/api";
 import "../comments.css";
 
 function AllComments() {
@@ -8,15 +8,9 @@ function AllComments() {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://nc-news-be-project-lndv.onrender.com/api/articles/${article_id}/comments`
-      )
-      .then((response) => {
-        return response.data.comments;
-      })
+    getComments(article_id)
       .then((body) => {
-        setComments(body);
+        setComments(body.comments);
       })
       .catch((error) => {
         console.log(error);
