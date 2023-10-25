@@ -4,12 +4,16 @@ import { getArticles } from "../api/api";
 
 function Articles() {
   const [allArticles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getArticles().then((body) => {
       setArticles(body.articles);
+      setLoading(false);
     });
   }, []);
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div className="articles-container">

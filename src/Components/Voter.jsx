@@ -1,22 +1,33 @@
 import { useState } from "react";
 import React from "react";
+import { useAuth } from "../Context/LoginContext";
 
 function Voter({ likes, update }) {
-  function handleLike() {
-    const newLikes = likes + 1;
-    update(newLikes);
+  const [votes, setVotes] = useState(0);
+  const { logedIn } = useAuth();
+
+  function handleClick(value) {
+    setVotes(votes + value);
+    update(value);
   }
-  function handleDislike() {
-    const newLikes = likes - 1;
-    update(newLikes);
-  }
+
   return (
     <div>
       <p>upvotes: {likes}</p>
-      <button disabled={likes === 1} onClick={handleLike}>
+      <button
+        disabled={votes === 1 || !logedIn}
+        onClick={() => {
+          handleClick(1);
+        }}
+      >
         +
       </button>
-      <button disabled={likes === -1} onClick={handleDislike}>
+      <button
+        disabled={votes === -1 || !logedIn}
+        onClick={() => {
+          handleClick(-1);
+        }}
+      >
         -
       </button>
     </div>
