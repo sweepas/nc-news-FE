@@ -24,10 +24,14 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  align-items: center;
 }
 
 .main-header {
   text-align: center;
 }
 
-
+button:hover {
+  background-color: #333;
+  color: #fff;
+}

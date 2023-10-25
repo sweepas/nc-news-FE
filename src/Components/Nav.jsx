@@ -1,4 +1,5 @@
-import { Route, Routes, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import LoginDash from "./LoginDash";
 import "../nav.css";
 
 function Nav() {
@@ -11,6 +12,7 @@ function Nav() {
         <NavLink to="/articles" className="nav-link">
           Articles |
         </NavLink>
+        {<LoginDash />}
       </nav>
     </div>
   );

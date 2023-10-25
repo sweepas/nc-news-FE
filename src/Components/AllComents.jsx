@@ -6,16 +6,23 @@ import "../comments.css";
 function AllComments() {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getComments(article_id)
       .then((body) => {
         setComments(body.comments);
+        setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.msg);
       });
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+
+  if (error) return <p>Error..</p>;
 
   return (
     <div className="comment-container">

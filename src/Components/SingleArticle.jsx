@@ -9,6 +9,7 @@ function SingleArticle() {
   const [article, setSingleArticle] = useState({});
   const [error, setError] = useState(null);
   const [comment, setCommentById] = useState();
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -19,6 +20,7 @@ function SingleArticle() {
           setError(body.msg);
         }
         setSingleArticle(body.article);
+        setLoading(false);
       })
       .catch((error) => {
         setError(error);
@@ -26,10 +28,15 @@ function SingleArticle() {
   }, []);
 
   const updateVotes = (newLikes) => {
-    setSingleArticle({ ...article, votes: newLikes });
-    patchArticle(article.article_id, newLikes).catch((error) => {
-      setError(error.msg);
-    });
+    const displayVotes = article.votes + newLikes;
+    setSingleArticle({ ...article, votes: displayVotes });
+    patchArticle(article.article_id, newLikes)
+      .then((response) => {
+        if (response.status !== 200) setError(response.msg);
+      })
+      .catch((error) => {
+        setError(error.msg);
+      });
   };
 
   function handleSubmit(e) {
@@ -38,6 +45,10 @@ function SingleArticle() {
 
   function handleChange(e) {
     setCommentById(e.target.value);
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
   if (error) {
