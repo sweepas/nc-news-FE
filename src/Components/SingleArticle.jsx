@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link, Route, Routes } from "react-router-dom";
-import { getArticleById, patchArticle } from "../api/api";
+import { getArticleById, patchArticle, postComment } from "../api/api";
 import Voter from "./Voter";
+import { useAuth } from "../Context/LoginContext";
 import "../article.css";
 
 function SingleArticle() {
   const { article_id } = useParams();
-  const [article, setSingleArticle] = useState({});
+  const [article, setSingleArticle] = useState();
   const [error, setError] = useState(null);
   const [comment, setCommentById] = useState();
   const [loading, setLoading] = useState(true);
+  const [post, setPost] = useState(false);
+  const { authUser, logedIn } = useAuth();
 
   const navigate = useNavigate();
 
@@ -25,7 +28,7 @@ function SingleArticle() {
       .catch((error) => {
         setError(error);
       });
-  }, []);
+  }, [article]);
 
   const updateVotes = (newLikes) => {
     const displayVotes = article.votes + newLikes;
@@ -39,12 +42,24 @@ function SingleArticle() {
       });
   };
 
+  useEffect(() => {
+    if (post) {
+      postComment(article_id, authUser, comment).then((response) => {
+        if (response.status === 201) {
+          navigate("/comments");
+        }
+      });
+    }
+  }, [post]);
+
   function handleSubmit(e) {
-    setCommentById("comment");
+    e.preventDefault();
+    setPost("post");
   }
 
   function handleChange(e) {
-    setCommentById(e.target.value);
+    const comment = e.target.value;
+    setCommentById(comment);
   }
 
   if (loading) {
@@ -70,9 +85,13 @@ function SingleArticle() {
         <p>Topics: {article.topic}</p>
         <Voter likes={article.votes} update={updateVotes} />
         <p>{article.body}</p>
-        <form action="submit">
+        <form
+          action="submit"
+          id="comment-form"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <input type="text" onChange={handleChange} />
-          <button onClick={handleSubmit}>Submit comment</button>
+          <button disabled={!logedIn}>Submit comment</button>
         </form>
       </div>
     </>
