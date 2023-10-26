@@ -1,17 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
 
 function Articles() {
   const [allArticles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { topic } = useParams();
 
   useEffect(() => {
-    getArticles().then((body) => {
+    getArticles(topic).then((body) => {
       setArticles(body.articles);
       setLoading(false);
     });
-  }, []);
+  }, [topic]);
 
   if (loading) return <p>Loading...</p>;
 
@@ -30,7 +31,9 @@ function Articles() {
               <div className="article-menu">
                 <p>upvotes {article.votes}</p>
                 <p>{article.topic}</p>
-                <Link to={`/articles/${article.article_id}`}>Read More..</Link>
+                <Link to={`/articles/${topic}/${article.article_id}`}>
+                  Read More
+                </Link>
                 <p>Comments</p>
               </div>
             </li>

@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link, Route, Routes } from "react-router-dom";
+
 import { getArticleById, patchArticle, postComment } from "../api/api";
+
+import { getArticleById, patchArticle } from "../api/api";
+import { useAuth } from "../Context/LoginContext";
+
 import Voter from "./Voter";
 import { useAuth } from "../Context/LoginContext";
 import "../article.css";
@@ -13,6 +18,7 @@ function SingleArticle() {
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState(false);
   const { authUser, logedIn } = useAuth();
+  
 
   const navigate = useNavigate();
 
@@ -98,7 +104,13 @@ function SingleArticle() {
           onSubmit={(e) => handleSubmit(e)}
         >
           <input type="text" onChange={handleChange} />
+
           <button disabled={!logedIn}>Submit comment</button>
+
+          <button disabled={!logedIn} onClick={handleSubmit}>
+            Submit comment
+          </button>
+
         </form>
       </div>
     </>
