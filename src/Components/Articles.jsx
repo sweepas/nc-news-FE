@@ -6,7 +6,6 @@ function Articles() {
   const [allArticles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const { topic } = useParams();
-  console.log(topic);
 
   useEffect(() => {
     getArticles(topic).then((body) => {
