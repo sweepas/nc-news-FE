@@ -5,7 +5,8 @@ import { getArticles } from "../api/api";
 function Articles() {
   const [allArticles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { topic } = useParams();
+  const { sortby, topic } = useParams();
+  console.log(sortby, topic);
 
   useEffect(() => {
     getArticles(topic).then((body) => {
