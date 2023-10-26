@@ -17,6 +17,7 @@ function SingleArticle() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(article);
     getArticleById(article_id)
       .then((body) => {
         if (body.msg === "item not found") {
@@ -28,9 +29,10 @@ function SingleArticle() {
       .catch((error) => {
         setError(error);
       });
-  }, [article]);
+  }, []);
 
   const updateVotes = (newLikes) => {
+    console.log("grom votes");
     const displayVotes = article.votes + newLikes;
     setSingleArticle({ ...article, votes: displayVotes });
     patchArticle(article.article_id, newLikes)
@@ -45,8 +47,9 @@ function SingleArticle() {
   useEffect(() => {
     if (post) {
       postComment(article_id, authUser, comment).then((response) => {
+        console.log(response);
         if (response.status === 201) {
-          navigate("/comments");
+          console.log("success");
         }
       });
     }

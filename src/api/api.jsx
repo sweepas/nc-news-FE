@@ -30,12 +30,13 @@ export const patchArticle = (article_id, votes) => {
 };
 
 export const postComment = (article_id, username, body) => {
-  return request
-    .post(`/articles/${article_id}/comments`, {
-      username: username,
-      body: body,
-    })
-    .then((response) => {
-      return response.data;
-    });
+  const comment = {
+    article_id: article_id,
+    username: username,
+  };
+  const url = `/articles/${article_id}/comments`;
+  console.log(comment, url);
+  return request.post(url, comment).then((response) => {
+    return response.data;
+  });
 };
