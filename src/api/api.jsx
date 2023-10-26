@@ -3,8 +3,10 @@ import axios from "axios";
 const request = axios.create({
   baseURL: "https://nc-news-be-project-lndv.onrender.com/api",
 });
-export const getArticles = () => {
-  return request.get("articles").then((response) => {
+export const getArticles = (query) => {
+  let url = "articles";
+  if (query) url += `?topic=${query}`;
+  return request.get(url).then((response) => {
     return response.data;
   });
 };
@@ -27,4 +29,10 @@ export const patchArticle = (article_id, votes) => {
     .then((response) => {
       return response.data;
     });
+};
+
+export const getTopics = () => {
+  return request.get("/topics").then((response) => {
+    return response.data;
+  });
 };
