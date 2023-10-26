@@ -17,7 +17,6 @@ function SingleArticle() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(article);
     getArticleById(article_id)
       .then((body) => {
         if (body.msg === "item not found") {
@@ -40,25 +39,29 @@ function SingleArticle() {
         if (response.status !== 200) setError(response.msg);
       })
       .catch((error) => {
-        console.log(error.msg);
         setError(error.msg);
       });
   };
 
   useEffect(() => {
     if (post) {
-      postComment(article_id, authUser, comment).then((response) => {
-        console.log(response);
-        if (response.status === 201) {
-          console.log("success");
-        }
-      });
+      postComment(article_id, authUser, comment)
+        .then((response) => {
+          if (response.status === 201) {
+            alert("Your comment was posted succesfully");
+            setPost(false);
+            navigate("comments");
+          }
+        })
+        .catch((error) => {
+          setError(error.msg);
+        });
     }
   }, [post]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setPost("post");
+    setPost(true);
   }
 
   function handleChange(e) {
