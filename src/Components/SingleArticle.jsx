@@ -40,6 +40,7 @@ function SingleArticle() {
         if (response.status !== 200) setError(response.msg);
       })
       .catch((error) => {
+        console.log(error.msg);
         setError(error.msg);
       });
   };
