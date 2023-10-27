@@ -8,7 +8,7 @@ import "../comments.css";
 function AllComments() {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
-  const [deleteId, setDeleteId] = useState();
+  const [deleteId, setDeleteId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { authUser, logedIn } = useAuth();
@@ -25,8 +25,11 @@ function AllComments() {
   }, []);
 
   useEffect(() => {
-    console.log(deleteId);
-    deleteComment(deleteId);
+    if (deleteId) {
+      deleteComment(deleteId).then((response) => {
+        console.log(response.status);
+      });
+    }
   }, [deleteId]);
 
   function handleDeleteComment(commentId) {

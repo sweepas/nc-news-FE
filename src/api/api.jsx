@@ -42,8 +42,8 @@ export const getTopics = () => {
     return response.data;
   });
 };
-export const deleteComment = () => {
-  return request.delete("/comments/:comment_id").then((response) => {
-    console.log(response);
+export const deleteComment = (comment_id) => {
+  return request.delete(`/comments/${comment_id}`).then((response) => {
+    return response;
   });
 };
