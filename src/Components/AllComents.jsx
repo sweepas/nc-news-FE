@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getComments } from "../api/api";
+import { getComments, deleteComment } from "../api/api";
+import { useAuth } from "../Context/LoginContext";
+
 import "../comments.css";
 
 function AllComments() {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
+  const [deleteId, setDeleteId] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { authUser, logedIn } = useAuth();
 
   useEffect(() => {
     getComments(article_id)
@@ -19,6 +23,15 @@ function AllComments() {
         setError(error.msg);
       });
   }, []);
+
+  useEffect(() => {
+    console.log(deleteId);
+    deleteComment(deleteId);
+  }, [deleteId]);
+
+  function handleDeleteComment(commentId) {
+    setDeleteId(commentId);
+  }
 
   if (loading) return <p>Loading...</p>;
 
@@ -34,9 +47,15 @@ function AllComments() {
               <div>
                 <p>{comment.created_at}</p>
                 <p>{comment.article_id}</p>
+
                 <p>upvotes: {comment.votes}</p>
               </div>
               <p>{comment.body}</p>
+              {logedIn && authUser === comment.author && (
+                <button onClick={() => handleDeleteComment(comment.comment_id)}>
+                  Delete Comment
+                </button>
+              )}
             </li>
           );
         })}

@@ -5,7 +5,6 @@ const request = axios.create({
 });
 
 export const getArticles = (query, sortOption) => {
-  console.log(query, sortOption);
   let url = "articles";
   if (sortOption) {
     url += `?sortby=${sortOption}`;
@@ -41,5 +40,10 @@ export const patchArticle = (article_id, votes) => {
 export const getTopics = () => {
   return request.get("/topics").then((response) => {
     return response.data;
+  });
+};
+export const deleteComment = () => {
+  return request.delete("/comments/:comment_id").then((response) => {
+    console.log(response);
   });
 };
