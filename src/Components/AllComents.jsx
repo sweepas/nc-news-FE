@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getComments } from "../api/api";
+import { useNavigate, useParams } from "react-router-dom";
+import { getComments, deleteComment } from "../api/api";
+import { useAuth } from "../Context/LoginContext";
+
 import "../comments.css";
 
 function AllComments() {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
+  const [deleteId, setDeleteId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { authUser, logedIn } = useAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     getComments(article_id)
       .then((body) => {
@@ -19,6 +23,21 @@ function AllComments() {
         setError(error.msg);
       });
   }, []);
+
+  useEffect(() => {
+    if (deleteId) {
+      deleteComment(deleteId).then((response) => {
+        if (response.status === 204) {
+          alert("your comment was deleted succesfully");
+          navigate(0);
+        }
+      });
+    }
+  }, [deleteId]);
+
+  function handleDeleteComment(commentId) {
+    setDeleteId(commentId);
+  }
 
   if (loading) return <p>Loading...</p>;
 
@@ -34,9 +53,15 @@ function AllComments() {
               <div>
                 <p>{comment.created_at}</p>
                 <p>{comment.article_id}</p>
+
                 <p>upvotes: {comment.votes}</p>
               </div>
               <p>{comment.body}</p>
+              {logedIn && authUser === comment.author && (
+                <button onClick={() => handleDeleteComment(comment.comment_id)}>
+                  Delete Comment
+                </button>
+              )}
             </li>
           );
         })}

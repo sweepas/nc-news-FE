@@ -5,7 +5,6 @@ const request = axios.create({
 });
 
 export const getArticles = (query, sortOption) => {
-  console.log(query, sortOption);
   let url = "articles";
   if (sortOption) {
     url += `?sortby=${sortOption}`;
@@ -38,7 +37,6 @@ export const patchArticle = (article_id, votes) => {
     });
 };
 
-
 export const postComment = (article_id, username, body) => {
   const comment = {
     body: body,
@@ -46,12 +44,17 @@ export const postComment = (article_id, username, body) => {
   };
   const url = `/articles/${article_id}/comments`;
   return request.post(url, comment).then((response) => {
-    return response
-  })
-}
+    return response;
+  });
+};
 export const getTopics = () => {
   return request.get("/topics").then((response) => {
     return response.data;
-
   });
-}
+};
+
+export const deleteComment = (comment_id) => {
+  return request.delete(`/comments/${comment_id}`).then((response) => {
+    return response;
+  });
+};
