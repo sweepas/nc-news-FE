@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
-import Sortby from "./Sortby";
 import { useParams, useNavigate, Link, Route, Routes } from "react-router-dom";
-
 import { getArticleById, patchArticle, postComment } from "../api/api";
-
-import { getArticleById, patchArticle } from "../api/api";
 import { useAuth } from "../Context/LoginContext";
-
 import Voter from "./Voter";
-import { useAuth } from "../Context/LoginContext";
 import "../article.css";
 
 function SingleArticle() {
@@ -19,7 +13,6 @@ function SingleArticle() {
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState(false);
   const { authUser, logedIn } = useAuth();
-  
 
   const navigate = useNavigate();
 
@@ -100,16 +93,6 @@ function SingleArticle() {
         <Voter likes={article.votes} update={updateVotes} />
         <p>{article.body}</p>
 
-        <form
-          action="submit"
-          id="comment-form"
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <input type="text" onChange={handleChange} />
-
-          <button disabled={!logedIn}>Submit comment</button>
-
-
         <form action="submit">
           <input
             type="text"
@@ -122,7 +105,6 @@ function SingleArticle() {
           <button disabled={!logedIn} onClick={handleSubmit}>
             Submit comment
           </button>
-
         </form>
       </div>
     </>

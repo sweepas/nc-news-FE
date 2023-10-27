@@ -46,11 +46,12 @@ export const postComment = (article_id, username, body) => {
   };
   const url = `/articles/${article_id}/comments`;
   return request.post(url, comment).then((response) => {
-    return response;
-
+    return response
+  })
+}
 export const getTopics = () => {
   return request.get("/topics").then((response) => {
     return response.data;
 
   });
-};
+}
