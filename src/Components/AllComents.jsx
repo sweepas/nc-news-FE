@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getComments, deleteComment } from "../api/api";
 import { useAuth } from "../Context/LoginContext";
 
@@ -12,7 +12,7 @@ function AllComments() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { authUser, logedIn } = useAuth();
-
+  const navigate = useNavigate();
   useEffect(() => {
     getComments(article_id)
       .then((body) => {
@@ -27,7 +27,10 @@ function AllComments() {
   useEffect(() => {
     if (deleteId) {
       deleteComment(deleteId).then((response) => {
-        console.log(response.status);
+        if (response.status === 204) {
+          alert("your comment was deleted succesfully");
+          navigate(0);
+        }
       });
     }
   }, [deleteId]);
