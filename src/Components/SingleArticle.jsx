@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Sortby from "./Sortby";
 import { useParams, useNavigate, Link, Route, Routes } from "react-router-dom";
 
 import { getArticleById, patchArticle, postComment } from "../api/api";
@@ -98,6 +99,7 @@ function SingleArticle() {
         <p>Topics: {article.topic}</p>
         <Voter likes={article.votes} update={updateVotes} />
         <p>{article.body}</p>
+
         <form
           action="submit"
           id="comment-form"
@@ -106,6 +108,16 @@ function SingleArticle() {
           <input type="text" onChange={handleChange} />
 
           <button disabled={!logedIn}>Submit comment</button>
+
+
+        <form action="submit">
+          <input
+            type="text"
+            placeholder={
+              logedIn ? "your comment goes here" : "Please log in to comment.."
+            }
+            onChange={handleChange}
+          />
 
           <button disabled={!logedIn} onClick={handleSubmit}>
             Submit comment
