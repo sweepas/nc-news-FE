@@ -3,9 +3,16 @@ import axios from "axios";
 const request = axios.create({
   baseURL: "https://nc-news-be-project-lndv.onrender.com/api",
 });
-export const getArticles = (query) => {
+
+export const getArticles = (query, sortOption) => {
+  console.log(query, sortOption);
   let url = "articles";
+  if (sortOption) {
+    url += `?sortby=${sortOption}`;
+    query = null;
+  }
   if (query) url += `?topic=${query}`;
+
   return request.get(url).then((response) => {
     return response.data;
   });
