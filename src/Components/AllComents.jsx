@@ -20,18 +20,26 @@ function AllComments() {
         setLoading(false);
       })
       .catch((error) => {
+        console.log(error);
         setError(error.msg);
       });
   }, []);
 
   useEffect(() => {
     if (deleteId) {
-      deleteComment(deleteId).then((response) => {
-        if (response.status === 204) {
-          alert("your comment was deleted succesfully");
-          navigate(0);
-        }
-      });
+      deleteComment(deleteId)
+        .then((response) => {
+          if (response.status === 204) {
+            alert("your comment was deleted succesfully");
+            navigate(0);
+          }
+        })
+        .catch((error) => {
+          if (error) {
+            alert("something went wrong. please try again");
+            navigate(0);
+          }
+        });
     }
   }, [deleteId]);
 
