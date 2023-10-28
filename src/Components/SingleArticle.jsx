@@ -4,6 +4,7 @@ import { getArticleById, patchArticle, postComment } from "../api/api";
 import { useAuth } from "../Context/LoginContext";
 import Voter from "./Voter";
 import "../article.css";
+import ErrorPage from "./ErrorPage";
 
 function SingleArticle() {
   const { article_id } = useParams();
@@ -51,6 +52,7 @@ function SingleArticle() {
             alert("Your comment was posted succesfully");
             setPost(false);
             navigate("comments");
+            console.log("hi");
           }
         })
         .catch((error) => {
@@ -74,7 +76,7 @@ function SingleArticle() {
   }
 
   if (error) {
-    return <p>Error</p>;
+    return <p>{<ErrorPage />}</p>;
   }
   return (
     <>

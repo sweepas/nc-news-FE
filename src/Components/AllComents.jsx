@@ -4,6 +4,7 @@ import { getComments, deleteComment } from "../api/api";
 import { useAuth } from "../Context/LoginContext";
 
 import "../comments.css";
+import ErrorPage from "./ErrorPage";
 
 function AllComments() {
   const { article_id } = useParams();
@@ -20,7 +21,6 @@ function AllComments() {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
         setError(error.msg);
       });
   }, []);
@@ -31,13 +31,14 @@ function AllComments() {
         .then((response) => {
           if (response.status === 204) {
             alert("your comment was deleted succesfully");
-            navigate(0);
+            setLoading(true);
           }
         })
         .catch((error) => {
           if (error) {
             alert("something went wrong. please try again");
             navigate(0);
+            setError;
           }
         });
     }
@@ -49,7 +50,12 @@ function AllComments() {
 
   if (loading) return <p>Loading...</p>;
 
-  if (error) return <p>Error..</p>;
+  if (error)
+    return (
+      <p>
+        <ErrorPage />
+      </p>
+    );
 
   return (
     <div className="comment-container">
@@ -61,7 +67,6 @@ function AllComments() {
               <div>
                 <p>{comment.created_at}</p>
                 <p>{comment.article_id}</p>
-
                 <p>upvotes: {comment.votes}</p>
               </div>
               <p>{comment.body}</p>

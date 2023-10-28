@@ -6,6 +6,7 @@ import Articles from "./Components/Articles";
 import Nav from "./Components/Nav";
 import SingleArticle from "./Components/SingleArticle";
 import AllComments from "./Components/AllComents";
+import ErrorPage from "./Components/ErrorPage";
 import { LoginProvider } from "./Context/LoginContext";
 
 function App() {
@@ -17,15 +18,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/articles" element={<Articles />}></Route>
+          <Route
+            path="/articles/:article_id"
+            element={<SingleArticle />}
+          ></Route>
           <Route path="/articles/:topic/" element={<Articles />} />
           <Route
             path="/articles/:topic/:article_id/*"
             element={<SingleArticle />}
           ></Route>
           <Route
-            path="/articles/:article_id/comments"
+            path="/articles/:topic/:article_id/comments"
             element={<AllComments />}
           ></Route>
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </LoginProvider>
     </div>
