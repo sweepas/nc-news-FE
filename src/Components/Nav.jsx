@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
+
 import LoginDash from "./LoginDash";
-import Topics from "./Topics";
 import "../nav.css";
 
 function Nav() {
@@ -13,10 +13,10 @@ function Nav() {
         <NavLink to="/articles" className="nav-link">
           Articles |
         </NavLink>
-        {<Topics />}
         {<LoginDash />}
       </nav>
     </div>
   );
 }
+
 export default Nav;

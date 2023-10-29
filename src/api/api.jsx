@@ -5,14 +5,20 @@ const request = axios.create({
 });
 
 export const getArticles = (query, sortOption) => {
-  let url = "articles";
-  if (sortOption) {
-    url += `?sortby=${sortOption}`;
-    query = null;
-  }
-  if (query) url += `?topic=${query}`;
+  console.log(query === "null");
+  const url = "articles";
 
-  return request.get(url).then((response) => {
+  const params = {};
+
+  if (!query === "null") {
+    params.topic = query;
+  }
+
+  if (sortOption) {
+    params.sortby = sortOption;
+  }
+  console.log(params);
+  return request.get(url, { params }).then((response) => {
     return response.data;
   });
 };

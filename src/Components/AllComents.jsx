@@ -11,6 +11,7 @@ function AllComments() {
   const [comments, setComments] = useState([]);
   const [deleteId, setDeleteId] = useState("");
   const [loading, setLoading] = useState(true);
+  const [reload, setreLoad] = useState("");
   const [error, setError] = useState(null);
   const { authUser, logedIn } = useAuth();
   const navigate = useNavigate();
@@ -18,12 +19,13 @@ function AllComments() {
     getComments(article_id)
       .then((body) => {
         setComments(body.comments);
+        setreLoad("");
         setLoading(false);
       })
       .catch((error) => {
         setError(error.msg);
       });
-  }, []);
+  }, [reload]);
 
   useEffect(() => {
     if (deleteId) {
@@ -31,14 +33,13 @@ function AllComments() {
         .then((response) => {
           if (response.status === 204) {
             alert("your comment was deleted succesfully");
-            setLoading(true);
+            setreLoad("t");
           }
         })
         .catch((error) => {
           if (error) {
             alert("something went wrong. please try again");
-            navigate(0);
-            setError;
+            setreLoad("t");
           }
         });
     }

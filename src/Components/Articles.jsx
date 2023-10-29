@@ -1,18 +1,25 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
-import Sortby from "./Sortby";
 import ErrorPage from "./ErrorPage";
+import Sortby from "./Sortby";
+import Topics from "./Topics";
+import "../articles.css";
+import Voter from "./Voter";
 
 function Articles() {
   const [allArticles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sortOption, setSortOption] = useState(undefined);
   const [error, setError] = useState(null);
-  const { topic } = useParams();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const topic = searchParams.get("topic");
+  const sortby = searchParams.get("sortby");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getArticles(topic, sortOption)
+    getArticles(topic, sortby)
       .then((body) => {
         setArticles(body.articles);
         setLoading(false);
@@ -20,10 +27,15 @@ function Articles() {
       .catch((error) => {
         setError(error);
       });
-  }, [topic, sortOption]);
+  }, [topic, sortby]);
 
   function handleSortby(sortby) {
-    setSortOption(sortby);
+    setSearchParams({ topic, sortby });
+  }
+
+  function handleTopics(topic) {
+    if (topic === "All") navigate("articles");
+    setSearchParams({ topic, sortby });
   }
 
   function formatISODateTime(isoDate) {
@@ -41,14 +53,20 @@ function Articles() {
   if (loading) return <p>Loading...</p>;
   if (error) return <ErrorPage />;
   return (
-    <div className="articles-container">
-      {<Sortby update={handleSortby} />}
-      <ul>
-        {allArticles.map((article) => {
-          return (
+    <div>
+      <div className="filter-container">
+        <Sortby update={handleSortby} />
+        <Topics update={handleTopics} />
+      </div>
+      <div className="articles-container">
+        <ul>
+          {allArticles.map((article) => (
             <li className="article-name" key={article.article_id}>
               <h4>{article.title}</h4>
               <p>{formatISODateTime(article.created_at)}</p>
+              <div>
+                <Voter />
+              </div>
               <img
                 src={article.article_img_url}
                 alt={`an image of ${article.topic}`}
@@ -57,15 +75,15 @@ function Articles() {
               <div className="article-menu">
                 <p>upvotes {article.votes}</p>
                 <p>{article.topic}</p>
-                <Link to={`/articles/${topic}/${article.article_id}`}>
-                  Read More
+                <Link to={`/articles/${article.article_id}/id`}>Read More</Link>
+                <Link to={`/articles/${article.article_id}/id/comments`}>
+                  Comments
                 </Link>
-                <p>Comments</p>
               </div>
             </li>
-          );
-        })}
-      </ul>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

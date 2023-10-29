@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link, Route, Routes } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { getArticleById, patchArticle, postComment } from "../api/api";
 import { useAuth } from "../Context/LoginContext";
 import Voter from "./Voter";
-import "../article.css";
+import "../single-article.css";
 import ErrorPage from "./ErrorPage";
 
-function SingleArticle() {
+function SingleArticle({ update }) {
   const { article_id } = useParams();
   const [article, setSingleArticle] = useState();
   const [error, setError] = useState(null);
@@ -32,7 +32,6 @@ function SingleArticle() {
   }, []);
 
   const updateVotes = (newLikes) => {
-    console.log("grom votes");
     const displayVotes = article.votes + newLikes;
     setSingleArticle({ ...article, votes: displayVotes });
     patchArticle(article.article_id, newLikes)
@@ -50,8 +49,9 @@ function SingleArticle() {
         .then((response) => {
           if (response.status === 201) {
             alert("Your comment was posted succesfully");
-            setPost(false);
             navigate("comments");
+            setPost(false);
+
             console.log("hi");
           }
         })
@@ -79,7 +79,7 @@ function SingleArticle() {
     return <p>{<ErrorPage />}</p>;
   }
   return (
-    <>
+    <div className="single-article-page">
       <div className="single-article-container ">
         <h2>{article.title}</h2>
         <p>{article.created_at}</p>
@@ -103,13 +103,12 @@ function SingleArticle() {
             }
             onChange={handleChange}
           />
-
           <button disabled={!logedIn} onClick={handleSubmit}>
             Submit comment
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
