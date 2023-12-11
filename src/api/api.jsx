@@ -5,12 +5,11 @@ const request = axios.create({
 });
 
 export const getArticles = (query, sortOption) => {
-  console.log(query === "null");
   const url = "articles";
 
   const params = {};
 
-  if (!query === "null") {
+  if (!(query === "null")) {
     params.topic = query;
   }
 
@@ -64,3 +63,47 @@ export const deleteComment = (comment_id) => {
     return response;
   });
 };
+
+export const addNewArticle = (
+  articleText,
+  articleTopics,
+  title,
+  authUser,
+  imgUrl
+) => {
+  const body = {
+    author: authUser,
+    title: title,
+    body: articleText,
+    article_img_url: imgUrl,
+    topic: articleTopics,
+  };
+  const url = `/articles/`;
+  return request.post(url, body).then((response) => {
+    return response;
+  });
+};
+
+export const removeArticle = (article_id) => {
+  const url = `/articles/${article_id}`;
+  return request.delete(url).then((response) => {
+    return response;
+  });
+};
+
+export const addNewTopic = (slug, description) => {
+  const url = `/topics`;
+  const newTopic = { slug: slug, description: description };
+  console.log(newTopic);
+  return request.post(url, newTopic).then((response) => {
+    return response;
+  });
+};
+
+export const patchComment = (comment_id, inc_votes) => {
+  const url = `/comments/${comment_id}`
+  return request.patch(url, inc_votes).then((response)=>{
+    console.log(response);
+    return response
+  })
+}

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getComments, deleteComment } from "../api/api";
 import { useAuth } from "../Context/LoginContext";
+import { ComponentForm } from "./CommentForm";
 
 import "../comments.css";
 import ErrorPage from "./ErrorPage";
+import CommentVoter from "./CommentVoter";
 
 function AllComments() {
   const { article_id } = useParams();
@@ -48,8 +50,17 @@ function AllComments() {
   function handleDeleteComment(commentId) {
     setDeleteId(commentId);
   }
-
-  if (loading) return <p>Loading...</p>;
+  function formatISODateTime(isoDate) {
+    const date = new Date(isoDate);
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return date.toLocaleDateString(undefined, options);
+  }
 
   if (error)
     return (
@@ -59,28 +70,38 @@ function AllComments() {
     );
 
   return (
-    <div className="comment-container">
-      <ul>
-        {comments.map((comment) => {
-          return (
-            <li key={comment.comment_id}>
-              <h4>{comment.author}</h4>
-              <div>
-                <p>{comment.created_at}</p>
-                <p>{comment.article_id}</p>
-                <p>upvotes: {comment.votes}</p>
-              </div>
-              <p>{comment.body}</p>
-              {logedIn && authUser === comment.author && (
-                <button onClick={() => handleDeleteComment(comment.comment_id)}>
-                  Delete Comment
-                </button>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      {loading ? (
+        <p className="loading-tab">Loading...</p>
+      ) : (
+        <div className="comment-container">
+          <ComponentForm />
+          <ul>
+            {comments.map((comment) => {
+              return (
+                <li key={comment.comment_id}>
+                  <h4>{comment.author}</h4>
+                  <div>
+                    <p>{formatISODateTime(comment.created_at)}</p>
+                    <p>{comment.article_id}</p>
+                    <CommentVoter comment={comment} />
+                  </div>
+                  <p>{comment.body}</p>
+                  {logedIn && authUser === comment.author && (
+                    <button
+                      onClick={() => handleDeleteComment(comment.comment_id)}
+                      className="delete-btn"
+                    >
+                      Delete Comment
+                    </button>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </>
   );
 }
 

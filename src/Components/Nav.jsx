@@ -13,6 +13,12 @@ function Nav() {
         <NavLink to="/articles" className="nav-link">
           Articles |
         </NavLink>
+        <NavLink to="/articles/add" className="nav-link">
+          New Article |
+        </NavLink>
+        <NavLink to="/topics" className="nav-link">
+          New Topic |
+        </NavLink>
         {<LoginDash />}
       </nav>
     </div>

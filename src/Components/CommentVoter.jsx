@@ -1,17 +1,18 @@
 import { useState } from "react";
 import React from "react";
 import { useAuth } from "../Context/LoginContext";
-import { patchArticle } from "../api/api";
+import { patchComment } from "../api/api";
 
-function Voter({ article }) {
-  const [votes, setVotes] = useState(article.votes);
+function CommentVoter({ comment }) {
+  const [votes, setVotes] = useState(comment.votes);
   const [userVote, setusUerVote] = useState(0);
   const [error, setError] = useState(null);
 
   const { logedIn } = useAuth();
   const updateVotes = (newLikes) => {
-    patchArticle(article.article_id, newLikes)
+    patchComment(comment.article_id, newLikes)
       .then((response) => {
+        console.log(response);
         if (response.status !== 200) setError(response.msg);
       })
       .catch((error) => {
@@ -20,7 +21,7 @@ function Voter({ article }) {
   };
 
   function handleClick(value) {
-    console.log(article.votes, value);
+    console.log(comment.votes, value);
     setVotes(votes + value);
     setusUerVote(userVote + value);
     updateVotes(value);
@@ -49,4 +50,4 @@ function Voter({ article }) {
   );
 }
 
-export default Voter;
+export default CommentVoter;

@@ -6,7 +6,9 @@ import Articles from "./Components/Articles";
 import Nav from "./Components/Nav";
 import SingleArticle from "./Components/SingleArticle";
 import AllComments from "./Components/AllComents";
+import AddArticle from "./Components/AddArticle";
 import ErrorPage from "./Components/ErrorPage";
+import AddTopic from "./Components/AddTopic";
 import { LoginProvider } from "./Context/LoginContext";
 
 function App() {
@@ -18,20 +20,18 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/articles" element={<Articles />}></Route>
+          <Route path="/articles/:topic/:sortby" element={<Articles />} />
           <Route
-            path="/articles/:article_id/id"
+            path="/articles/:article_id/"
             element={<SingleArticle />}
           ></Route>
-          <Route path="/articles/:topic/" element={<Articles />} />
-          <Route path="/articles/sort/:sortby/" element={<Articles />} />
-          {/* <Route
-            path="/articles/:topic/:article_id/*"
-            element={<SingleArticle />}
-          ></Route> */}
           <Route
-            path="/articles/:article_id/id/comments"
+            path="/articles/:article_id/comments"
             element={<AllComments />}
           ></Route>
+          <Route path="/articles/add" element={<AddArticle />} />
+          <Route path="/topics" element={<AddTopic />} />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </LoginProvider>

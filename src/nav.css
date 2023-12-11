@@ -6,6 +6,7 @@
   top: 0;
   width: 100%;
   font-family: 'Courier New', Courier, monospace;
+  z-index: 1000;
 }
 
 .nav-bar {
@@ -13,6 +14,7 @@
   justify-content: center;
   align-items: center;
   max-width: 100%;
+  
 }
 
 .nav-links {
@@ -37,4 +39,13 @@
 
 .login-container span{
   color: #fff;
+}
+
+@font-face {
+  font-family: 'Pixelify Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pixelifysans/v1/CHy2V-3HFUT7aC4iv1TxGDR9DHEserHN25py2TQ3101RZZN4h1mWrull_g.woff2) format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }

@@ -9,6 +9,9 @@
     font-family: 'Courier New', Courier, monospace;
     
   }
+  .articles-container li{
+    position: relative;
+  }
   
   .filter-container {
     margin-top: 50px;
@@ -22,12 +25,32 @@
     flex: 1;
     margin-right: 10px;
   }
+  .filter-container p{
+    font-family: 'Courier New', Courier, monospace;
+  }
   
   .sort-options {
     display: flex;
     
   }
+  .loading-tab{
+    margin: 50vh 50vw;
+    font-size: 18px;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    
+  }
+
+  .delete-btn{
+  position: absolute;
+  top: 10px; 
+  right: 10px; 
+  padding: 10px;
   
+  border: none;
+  cursor: pointer;
+  }
   .sort-options a {
     text-decoration: none;
     color: #333;
@@ -50,6 +73,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .article-name h4 {
@@ -69,7 +93,7 @@
   }
   
   .article-img {
-    max-width: 100%;
+    max-width: 700px;
     height: auto;
   }
   

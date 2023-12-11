@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Sortby({ update }) {
   const [selectedOption, setSelectedOption] = useState("default");
-
+  const navigate = useNavigate();
   const handleButtonClick = (value) => {
     setSelectedOption(value);
     update(value);
+  };
+  const handleResetClick = () => {
+    navigate("/articles");
   };
 
   return (
@@ -29,6 +33,12 @@ function Sortby({ update }) {
           onClick={() => handleButtonClick("comment_count")}
         >
           comment count
+        </button>
+        <button
+          className={selectedOption === "null" ? "selected" : ""}
+          onClick={() => handleResetClick("")}
+        >
+          reset
         </button>
       </div>
     </div>

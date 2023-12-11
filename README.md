@@ -1,1 +1,3 @@
-# nc-news-FE
+Northcoders News 
+
+This project

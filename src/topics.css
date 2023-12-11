@@ -1,0 +1,61 @@
+.new-topic-container{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.new-topic-container label{
+    display: block;
+    margin: 10px 0;
+    margin-top: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+
+}
+
+
+
+
+
+.new-topic-container form {
+    display: flex;
+    flex-direction: column;
+}
+.new-topic-container input{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+.topic-text-area{
+    height: 150px;
+     white-space: pre-wrap;
+}
+
+.new-topic-container button {
+    width: 30%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.new-topic-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

@@ -1,3 +1,4 @@
+import { ComponentForm } from "./CommentForm";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getArticleById, patchArticle, postComment } from "../api/api";
@@ -10,7 +11,6 @@ function SingleArticle({ update }) {
   const { article_id } = useParams();
   const [article, setSingleArticle] = useState();
   const [error, setError] = useState(null);
-  const [comment, setCommentById] = useState();
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState(false);
   const { authUser, logedIn } = useAuth();
@@ -31,45 +31,17 @@ function SingleArticle({ update }) {
       });
   }, []);
 
-  const updateVotes = (newLikes) => {
-    const displayVotes = article.votes + newLikes;
-    setSingleArticle({ ...article, votes: displayVotes });
-    patchArticle(article.article_id, newLikes)
-      .then((response) => {
-        if (response.status !== 200) setError(response.msg);
-      })
-      .catch((error) => {
-        setError(error.msg);
-      });
-  };
-
-  useEffect(() => {
-    if (post) {
-      postComment(article_id, authUser, comment)
-        .then((response) => {
-          if (response.status === 201) {
-            alert("Your comment was posted succesfully");
-            navigate("comments");
-            setPost(false);
-
-            console.log("hi");
-          }
-        })
-        .catch((error) => {
-          setError(error.msg);
-        });
-    }
-  }, [post]);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setPost(true);
-  }
-
-  function handleChange(e) {
-    const comment = e.target.value;
-    setCommentById(comment);
-  }
+  // const updateVotes = (newLikes) => {
+  //   const displayVotes = article.votes + newLikes;
+  //   setSingleArticle({ ...article, votes: displayVotes });
+  //   patchArticle(article.article_id, newLikes)
+  //     .then((response) => {
+  //       if (response.status !== 200) setError(response.msg);
+  //     })
+  //     .catch((error) => {
+  //       setError(error.msg);
+  //     });
+  // };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -92,24 +64,15 @@ function SingleArticle({ update }) {
         <p>{article.votes}</p>
         <Link to={`/articles/${article_id}/comments`}>All comments</Link>
         <p>Topics: {article.topic}</p>
-        <Voter likes={article.votes} update={updateVotes} />
+        <Voter article={article} />
         <p>{article.body}</p>
 
-        <form action="submit">
-          <input
-            type="text"
-            placeholder={
-              logedIn ? "your comment goes here" : "Please log in to comment.."
-            }
-            onChange={handleChange}
-          />
-          <button disabled={!logedIn} onClick={handleSubmit}>
-            Submit comment
-          </button>
-        </form>
+        <ComponentForm />
       </div>
     </div>
   );
 }
 
 export default SingleArticle;
+
+//likes={article.votes} update={updateVotes}

@@ -11,7 +11,7 @@ function Topics({ update }) {
     });
   }, []);
   function handleChange(value) {
-    setSelectedOption(value)
+    setSelectedOption(value);
     update(value);
   }
 
