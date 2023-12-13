@@ -75,8 +75,8 @@ function AllComments() {
         <p className="loading-tab">Loading...</p>
       ) : (
         <div className="comment-container">
-          <ComponentForm />
           <ul>
+            <ComponentForm />
             {comments.map((comment) => {
               return (
                 <li key={comment.comment_id}>

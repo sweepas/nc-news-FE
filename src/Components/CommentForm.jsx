@@ -38,14 +38,13 @@ export function ComponentForm() {
   }
   return (
     <form action="submit">
-      <input
-        type="text"
+      <textarea
         placeholder={
           logedIn ? "your comment goes here" : "Please log in to comment.."
         }
         onChange={handleChange}
-      />
-      <button disabled={!logedIn} onClick={handleSubmit}>
+      ></textarea>
+      <button disabled={!logedIn} onClick={handleSubmit} className="submit-btn">
         Submit comment
       </button>
     </form>

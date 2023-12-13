@@ -31,18 +31,6 @@ function SingleArticle({ update }) {
       });
   }, []);
 
-  // const updateVotes = (newLikes) => {
-  //   const displayVotes = article.votes + newLikes;
-  //   setSingleArticle({ ...article, votes: displayVotes });
-  //   patchArticle(article.article_id, newLikes)
-  //     .then((response) => {
-  //       if (response.status !== 200) setError(response.msg);
-  //     })
-  //     .catch((error) => {
-  //       setError(error.msg);
-  //     });
-  // };
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -75,4 +63,4 @@ function SingleArticle({ update }) {
 
 export default SingleArticle;
 
-//likes={article.votes} update={updateVotes}
+

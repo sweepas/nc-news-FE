@@ -1,51 +1,181 @@
-.nav-container {
-  background-color: #333;
-  padding: 10px;
-  position: fixed;
-  justify-content: center;
-  top: 0;
-  width: 100%;
+*{
+  box-sizing: border-box;
   font-family: 'Courier New', Courier, monospace;
-  z-index: 1000;
 }
 
-.nav-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
+body{
+  margin: 0;
   padding: 0;
 }
 
-.nav-link {
+.nav-bar {
+  
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
   color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
+  width: 100%;
+  z-index: 1000;
 }
 
-.login-container {
-  margin-right: 15px;
+.brand-name{
+  font-size: 20px;
+  font-weight: bolder;
+  color: #fff;
+  margin: .5rem
 }
-.login-container button {
+
+.nav-options ul{
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  
+}
+
+.nav-options li{
+  list-style: none;
+  justify-content: space-between;
+
+}
+.nav-link{
+  text-decoration: none;
+  color:#fff;
+  padding:1rem;
+  display: block;
+
+}
+
+.nav-options li:hover{
+  background-color: #555;
+}
+.toogle-btn{
+  position:fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  
+}
+.log-icon a{
+  position:fixed;
+  top: 1rem;
+  right: .5rem;
+  display: none;
+  text-decoration: none;
+  color: #fff;
+  min-width: 30px;
+  font-weight: bold;
+}
+
+.toogle-btn .bar{
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.login-container button{
   color: #fff;
   background-color: #333;
+  min-width: 30px;
+  
+}
+.login-container button:hover{
+  background-color: #555;
 }
 
-.login-container span{
-  color: #fff;
+@media (max-width: 990px) {
+  .toogle-btn {
+    display: flex;
+  }
+  .nav-options {
+    display: none;
+    width: 100%;
+  }
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-options ul{
+    width: 100%;
+    flex-direction: column;
+    
+  }
+  .nav-options li{
+    text-align: center;
+  }
+  .nav-options .nav-link {
+    padding:.5rem 1rem;
+  }
+  .login-container{
+    position: fixed;
+    right: .5rem;
+    margin-right: .5rem
+  }
+  .nav-options.active {
+    display: flex;
+    
+  }
 }
 
-@font-face {
-  font-family: 'Pixelify Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/pixelifysans/v1/CHy2V-3HFUT7aC4iv1TxGDR9DHEserHN25py2TQ3101RZZN4h1mWrull_g.woff2) format('woff2');
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+
+@media (max-width: 800px) {
+  .log-icon{
+    position: absolute;
+    right: .5rem;
+  }
+  .log-item{
+    display: none;
+  }
+  .log-icon a{
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    top: .75rem;    
+    right: .5rem;
+    margin-right: .5rem
+  }
+  .nav-bar {
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+   
+  }
+  .hi-span{
+    display: none;
+  }
+  .login-container{
+    display:none;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .login-container.active{
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    flex-direction: column;
+    .log-item{
+      display: flex;
+    }
+  }
+  .login-container.active,
+  .login-container.active .log-item {
+    display: flex;
+  }
 }
+
+
+
+
+
+
+
