@@ -10,18 +10,13 @@
     margin-top: 100px;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
-
 }
-
-
-
-
 
 .new-topic-container form {
     display: flex;
     flex-direction: column;
 }
-.new-topic-container input{
+.new-topic-container textarea,.new-topic-container input{
     width: 100%;
     padding: 10px;
     font-size: 16px;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getComments, deleteComment } from "../api/api";
 import { useAuth } from "../Context/LoginContext";
-import { ComponentForm } from "./CommentForm";
+import { CommentForm } from "./CommentForm";
 
 import "../comments.css";
 import ErrorPage from "./ErrorPage";
@@ -76,14 +76,13 @@ function AllComments() {
       ) : (
         <div className="comment-container">
           <ul>
-            <ComponentForm />
+            <CommentForm />
             {comments.map((comment) => {
               return (
                 <li key={comment.comment_id}>
                   <h4>{comment.author}</h4>
                   <div>
                     <p>{formatISODateTime(comment.created_at)}</p>
-                    <p>{comment.article_id}</p>
                     <CommentVoter comment={comment} />
                   </div>
                   <p>{comment.body}</p>
@@ -92,7 +91,7 @@ function AllComments() {
                       onClick={() => handleDeleteComment(comment.comment_id)}
                       className="delete-btn"
                     >
-                      Delete Comment
+                      Delete
                     </button>
                   )}
                 </li>

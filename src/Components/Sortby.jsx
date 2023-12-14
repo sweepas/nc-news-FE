@@ -35,6 +35,7 @@ function Sortby({ update }) {
           comment count
         </button>
         <button
+          type="reset"
           className={selectedOption === "null" ? "selected" : ""}
           onClick={() => handleResetClick("")}
         >

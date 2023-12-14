@@ -25,7 +25,6 @@ function LoginDash() {
   }
 
   const handleToggleClick = () => {
-    console.log("<>");
     setIsActive(!isActive);
   };
 
@@ -59,6 +58,7 @@ function LoginDash() {
         ) : (
           <span>
             <form
+              id="log-form"
               onChange={(e) => {
                 handleChange(e);
               }}

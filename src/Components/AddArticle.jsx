@@ -81,8 +81,11 @@ function AddArticle() {
             );
           })}
         </select>
-        <input
-          type="text"
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
           className="text-area"
           placeholder={
             logedIn
@@ -90,7 +93,7 @@ function AddArticle() {
               : "Please log in to add an article.."
           }
           onChange={handleChange}
-        />
+        ></textarea>
         <p className="author-p">article by {authUser}</p>
         <button type="button" disabled={!logedIn} onClick={handleSubmit}>
           Submit article

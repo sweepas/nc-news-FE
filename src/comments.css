@@ -1,5 +1,6 @@
 .comment-container {
     max-width: 1200px;
+    min-width: 300px;
     margin: 0 auto;
     padding: 20px;
     margin-top: 100px;
@@ -21,10 +22,20 @@
     font-family: 'Courier New', Courier, monospace;
     height: 150px;
 }
-.comment-container .comment-form{
+.comment-container {
     margin: 20px;
     padding: 20px;
     width: calc(100% - 40px);
+}
+#comment-form{
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top:8%;
+    z-index: 1000;
+}
+#comment-form button{
+    margin-left: 20px;
 }
 
 .comment-container li {
@@ -43,8 +54,7 @@
     justify-content: space-between;
     margin-top: 10px;
 }
-.delete-btn{
-    width: 30%;
+.delete-btn{ 
     padding: 10px;
     font-size: 16px;
     margin: 10px 0;
@@ -85,4 +95,15 @@
 .comment-container .submit-btn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .comment-voter{
+      display: flex;
+      flex-direction: column;
+    }
+    .comment-container{
+        margin: auto;
+        padding: 0;
+    }
 }

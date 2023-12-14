@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { postComment } from "../api/api";
 import { useParams, useNavigate } from "react-router-dom";
 
-export function ComponentForm() {
+export function CommentForm() {
   const [loading, setLoading] = useState(true);
   const { authUser, logedIn } = useAuth();
   const [post, setPost] = useState(false);
@@ -37,7 +37,7 @@ export function ComponentForm() {
     setPost(true);
   }
   return (
-    <form action="submit">
+    <form action="submit" id="comment-form">
       <textarea
         placeholder={
           logedIn ? "your comment goes here" : "Please log in to comment.."
@@ -45,7 +45,7 @@ export function ComponentForm() {
         onChange={handleChange}
       ></textarea>
       <button disabled={!logedIn} onClick={handleSubmit} className="submit-btn">
-        Submit comment
+        Submit
       </button>
     </form>
   );

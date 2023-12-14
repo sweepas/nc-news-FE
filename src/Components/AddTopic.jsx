@@ -31,8 +31,7 @@ function AddTopic() {
       <form className="new-topic-form">
         <input type="text" placeholder="new topic" onChange={handleTopic} />
         <br />
-        <input
-          type="text"
+        <textarea
           className="topic-text-area"
           placeholder={
             logedIn
@@ -40,7 +39,7 @@ function AddTopic() {
               : "Please log in to add a topic.."
           }
           onChange={handleChange}
-        />
+        ></textarea>
         <button type="button" disabled={!logedIn} onClick={handleSubmit}>
           Submit topic
         </button>

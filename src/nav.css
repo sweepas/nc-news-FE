@@ -9,7 +9,6 @@ body{
 }
 
 .nav-bar {
-  
   position: fixed;
   top: 0;
   display: flex;
@@ -26,6 +25,7 @@ body{
   font-weight: bolder;
   color: #fff;
   margin: .5rem
+  
 }
 
 .nav-options ul{
@@ -33,18 +33,18 @@ body{
   margin: 0;
   padding: 0;
   display: flex;
-  
 }
 
 .nav-options li{
   list-style: none;
   justify-content: space-between;
+  font-weight:900;
 
 }
 .nav-link{
   text-decoration: none;
   color:#fff;
-  padding:1rem;
+  padding:1rem 2rem;
   display: block;
 
 }
@@ -81,15 +81,20 @@ body{
   background-color: #fff;
   border-radius: 5px;
 }
+.login-container{
+  display: inline-block;
+}
 
 .login-container button{
   color: #fff;
   background-color: #333;
-  min-width: 30px;
+  min-width: 35px;
+  font-weight: bold;
   
 }
 .login-container button:hover{
-  background-color: #555;
+  color: #555;
+  
 }
 
 @media (max-width: 990px) {
@@ -100,6 +105,7 @@ body{
     display: none;
     width: 100%;
   }
+ 
   .nav-bar {
     flex-direction: column;
     align-items: flex-start;
@@ -158,6 +164,9 @@ body{
     flex-direction: column;
     align-items: flex-end;
   }
+  .login-container form{
+    justify-content: end;
+  }
   .login-container.active{
     position: relative;
     display: flex;
@@ -165,6 +174,9 @@ body{
     flex-direction: column;
     .log-item{
       display: flex;
+    }
+    .login-container button{
+      margin-left: auto;
     }
   }
   .login-container.active,

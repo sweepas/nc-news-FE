@@ -28,7 +28,7 @@ function CommentVoter({ comment }) {
   }
 
   return (
-    <div>
+    <div className="comment-voter">
       <p>upvotes: {votes}</p>
       <button
         disabled={userVote === 1 || !logedIn}

@@ -1,21 +1,17 @@
-import { ComponentForm } from "./CommentForm";
+import { CommentForm } from "./CommentForm";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getArticleById, patchArticle, postComment } from "../api/api";
-import { useAuth } from "../Context/LoginContext";
 import Voter from "./Voter";
 import "../single-article.css";
 import ErrorPage from "./ErrorPage";
 
-function SingleArticle({ update }) {
+function SingleArticle() {
   const { article_id } = useParams();
   const [article, setSingleArticle] = useState();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [post, setPost] = useState(false);
-  const { authUser, logedIn } = useAuth();
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     getArticleById(article_id)
@@ -55,7 +51,7 @@ function SingleArticle({ update }) {
         <Voter article={article} />
         <p>{article.body}</p>
 
-        <ComponentForm />
+        <CommentForm />
       </div>
     </div>
   );
