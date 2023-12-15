@@ -30,9 +30,7 @@
 #comment-form{
     display: flex;
     flex-direction: column;
-    position: sticky;
-    top:8%;
-    z-index: 1000;
+    
 }
 #comment-form button{
     margin-left: 20px;

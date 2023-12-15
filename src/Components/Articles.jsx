@@ -71,6 +71,11 @@ function Articles() {
             <ul>
               {allArticles.map((article) => (
                 <li className="article-name" key={article.article_id}>
+                  <img
+                    src={article.article_img_url}
+                    alt={`an image of ${article.topic}`}
+                    className="article-img"
+                  />
                   <h4>{article.title}</h4>
                   <p>{formatISODateTime(article.created_at)}</p>
                   <div>
@@ -85,14 +90,10 @@ function Articles() {
                     </button>
                   )}
                   {/* <p>{article.votes}</p> */}
-                  <img
-                    src={article.article_img_url}
-                    alt={`an image of ${article.topic}`}
-                    className="article-img"
-                  />
+
                   <div className="article-menu">
-                    <p>comment count {article.comment_count}</p>
-                    <p>{article.topic}</p>
+                    <p className="article-p">comments: {article.comment_count}</p>
+                    <p className="article-p"> topic: {article.topic}</p>
                     <Link to={`/articles/${article.article_id}/`}>
                       Read More
                     </Link>

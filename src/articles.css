@@ -1,10 +1,11 @@
 .articles-container {
     margin-top: 50px;
-    margin: 20px;
+    margin: auto;
     padding: 10px;
     border: none;
     font-family: 'Courier New', Courier, monospace;
     max-width: 1200px;
+    min-width: 300px;
   }
   .articles-container li{
     position: relative;
@@ -37,7 +38,10 @@
     justify-content: center;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    
+  }
+  .selected{
+    background-color: #333;
+    color: #fff;
   }
 
   .delete-btn{
@@ -96,10 +100,16 @@
     height: auto;
   }
   
-  
+  .filter-container button:hover{
+    font-weight: bold;
+  }
   @media screen and (max-width: 768px) {
     .filter-container {
       flex-direction: column;
+      justify-content: flex-start;
+    }
+    .topic-container-div button{
+      width: 100%;
     }
     .article-img{
       width: auto;
@@ -122,8 +132,23 @@
     }
   }
   
-  @media screen and (max-width: 480px) {
+  @media  (max-width: 480px) {
     .article-name {
       padding: 5px;
+    }
+    .articles-container{
+      margin: 5px;
+    }
+  }
+
+  @media  (max-width: 600px){
+    .article-p{
+      display: none;
+    }
+  }
+  @media (max-width: 993px){
+    .topic-container-div .filter-container{
+      display: flex;
+      flex-direction: column;
     }
   }

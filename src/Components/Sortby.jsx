@@ -10,6 +10,7 @@ function Sortby({ update }) {
   };
   const handleResetClick = () => {
     navigate("/articles");
+    setSelectedOption('')
   };
 
   return (

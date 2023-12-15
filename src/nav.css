@@ -17,15 +17,17 @@ body{
   background-color: #333;
   color: #fff;
   width: 100%;
-  z-index: 1000;
+  min-width: 300px;
+  z-index: 1001;
+  flex-shrink: 0;
 }
 
 .brand-name{
   font-size: 20px;
   font-weight: bolder;
   color: #fff;
-  margin: .5rem
-  
+  margin: .5rem;
+  flex-shrink: 0 !important;
 }
 
 .nav-options ul{
@@ -46,7 +48,6 @@ body{
   color:#fff;
   padding:1rem 2rem;
   display: block;
-
 }
 
 .nav-options li:hover{
@@ -62,7 +63,7 @@ body{
   justify-content: space-between;
   width: 30px;
   height: 21px;
-  
+  flex-shrink: 0;
 }
 .log-icon a{
   position:fixed;
@@ -97,13 +98,74 @@ body{
   
 }
 
-@media (max-width: 990px) {
+
+@media  (max-width: 800px) {
+  .log-icon{
+    position: absolute;
+    right: .5rem;
+  }
+  .log-item{
+    display: none;
+  }
+  .log-icon a{
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    top: .75rem;    
+    right: .5rem;
+    margin-right: .5rem
+  }
+  .nav-bar {
+    position: fixed;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 300px;
+  }
+  .hi-span{
+    display: none;
+  }
+  .login-container{
+    display:none;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .login-container form{
+    justify-content: end;
+  }
+  .login-container.active{
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    flex-direction: column;
+    .log-item{
+      display: flex;
+    }
+    .login-container button{
+      padding-left: 50px;
+    }
+  }
+  .login-container.active,
+  .login-container.active .log-item {
+    display: flex;
+    justify-content: end;
+  }
+  .brand-name{
+    flex-shrink: 0;
+  }
+  .toogle-btn {
+    flex-shrink: 0;
+  }
+}
+
+@media  (max-width: 990px) {
   .toogle-btn {
     display: flex;
   }
   .nav-options {
     display: none;
     width: 100%;
+    min-width: 300px;
   }
  
   .nav-bar {
@@ -130,60 +192,16 @@ body{
     display: flex;
     
   }
+  .brand-name{
+    flex-shrink: 0;
+  }
+  .toogle-btn {
+    flex-shrink: 0;
+  }
 }
 
 
-@media (max-width: 800px) {
-  .log-icon{
-    position: absolute;
-    right: .5rem;
-  }
-  .log-item{
-    display: none;
-  }
-  .log-icon a{
-    display: inline-block;
-    width: 100%;
-    position: absolute;
-    top: .75rem;    
-    right: .5rem;
-    margin-right: .5rem
-  }
-  .nav-bar {
-    position: relative;
-    flex-direction: column;
-    flex-wrap: wrap;
-   
-  }
-  .hi-span{
-    display: none;
-  }
-  .login-container{
-    display:none;
-    position: absolute;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .login-container form{
-    justify-content: end;
-  }
-  .login-container.active{
-    position: relative;
-    display: flex;
-    margin-left: auto;
-    flex-direction: column;
-    .log-item{
-      display: flex;
-    }
-    .login-container button{
-      margin-left: auto;
-    }
-  }
-  .login-container.active,
-  .login-container.active .log-item {
-    display: flex;
-  }
-}
+
 
 
 
