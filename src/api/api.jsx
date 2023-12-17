@@ -16,7 +16,7 @@ export const getArticles = (query, sortOption) => {
   if (sortOption) {
     params.sortby = sortOption;
   }
-  console.log(params);
+
   return request.get(url, { params }).then((response) => {
     return response.data;
   });

@@ -1,7 +1,7 @@
 
 h2 {
     font-size: 24px;
-    margin: 50px;
+    margin-top: 50px;
     color: black;
 }
 
@@ -28,4 +28,32 @@ button {
     margin-right: 10px;
     border: 1px solid #ccc;
   }
-  
+  form textarea {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: auto;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', Courier, monospace;
+    height: 150px;
+}
+
+
+ .submit-btn {
+  width: 30%;
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
