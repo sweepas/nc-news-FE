@@ -1,14 +1,17 @@
 .comment-container {
-    max-width: 1200px;
-    min-width: 300px;
+    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
     margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start ;
+    
 }
 
 
 .comment-container textarea {
-    position: relative;
     margin: 20px;
     padding: 20px;
     width: auto;
@@ -21,11 +24,11 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Courier New', Courier, monospace;
     height: 150px;
-}
+/* }
 .comment-container {
     margin: 20px;
     padding: 20px;
-    width: calc(100% - 40px);
+    width: calc(100% - 40px); */
 }
 #comment-form{
     display: flex;
@@ -35,6 +38,7 @@
 #comment-form button{
     margin-left: 20px;
 }
+
 
 .comment-container li {
     list-style: none;
@@ -46,11 +50,30 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Courier New', Courier, monospace;
     position: relative;
+    transition: 250ms;
+    opacity: .2;
+}
+.comment-container h4{
+    margin: 0%;
+}
+
+.show{
+    background-color: rgb(237, 244, 248);
+    opacity: 1 !important;
+}
+
+.date-time{
+    margin: 0%;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle !important;
 }
 .comment-container div {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    font-weight: bolder;
+    vertical-align: middle;
+    text-align: center;
 }
 .delete-btn{ 
     padding: 10px;

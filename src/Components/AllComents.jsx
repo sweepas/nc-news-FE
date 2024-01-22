@@ -1,56 +1,55 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+// AllComments.js
+import React, { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
 import { getComments, deleteComment } from "../api/api";
 import { useAuth } from "../Context/LoginContext";
 import { CommentForm } from "./CommentForm";
-
-import "../comments.css";
-import ErrorPage from "./ErrorPage";
 import CommentVoter from "./CommentVoter";
+import ErrorPage from "./ErrorPage";
+import "../comments.css";
+import useIntersectionObserver from "./useIntersectionObserver";
 
 function AllComments() {
-  const { article_id } = useParams();
-  const [comments, setComments] = useState([]);
-  const [deleteId, setDeleteId] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [reload, setreLoad] = useState("");
-  const [error, setError] = useState(null);
-  const { authUser, logedIn } = useAuth();
-  const navigate = useNavigate();
-  useEffect(() => {
+ const { article_id } = useParams();
+ const [comments, setComments] = useState([]);
+ const [deleteId, setDeleteId] = useState("");
+ const [loading, setLoading] = useState(true);
+ const [reload, setReLoad] = useState("");
+ const [error, setError] = useState(null);
+ const { authUser, logedIn } = useAuth();
+
+ const commentRefs = useRef([]);
+
+ useEffect(() => {
     getComments(article_id)
       .then((body) => {
         setComments(body.comments);
-        setreLoad("");
+        setReLoad("");
         setLoading(false);
+        commentRefs.current = body.comments.map(() => React.createRef());
       })
       .catch((error) => {
         setError(error.msg);
       });
-  }, [reload]);
+ }, [reload, article_id]);
 
-  useEffect(() => {
+ useEffect(() => {
     if (deleteId) {
       deleteComment(deleteId)
         .then((response) => {
           if (response.status === 204) {
-            alert("your comment was deleted succesfully");
-            setreLoad("t");
+            alert("Your comment was deleted successfully");
+            setReLoad("t");
           }
         })
-        .catch((error) => {
-          if (error) {
-            alert("something went wrong. please try again");
-            setreLoad("t");
-          }
+        .catch(() => {
+          alert("Something went wrong. Please try again.");
+          setReLoad("t");
         });
     }
-  }, [deleteId]);
+ }, [deleteId]);
 
-  function handleDeleteComment(commentId) {
-    setDeleteId(commentId);
-  }
-  function formatISODateTime(isoDate) {
+ function formatISODateTime(isoDate) {
     const date = new Date(isoDate);
     const options = {
       year: "numeric",
@@ -60,48 +59,50 @@ function AllComments() {
       minute: "2-digit",
     };
     return date.toLocaleDateString(undefined, options);
-  }
+ }
 
-  if (error)
-    return (
-      <p>
-        <ErrorPage />
-      </p>
-    );
+ useIntersectionObserver(commentRefs, comments);
 
-  return (
+ if (error) {
+    return <ErrorPage />;
+ }
+
+ return (
     <>
       {loading ? (
         <p className="loading-tab">Loading...</p>
       ) : (
         <div className="comment-container">
           <ul>
-            <CommentForm />
-            {comments.map((comment) => {
-              return (
-                <li key={comment.comment_id}>
-                  <h4>{comment.author}</h4>
-                  <div>
-                    <p>{formatISODateTime(comment.created_at)}</p>
-                    <CommentVoter comment={comment} />
-                  </div>
-                  <p>{comment.body}</p>
-                  {logedIn && authUser === comment.author && (
-                    <button
-                      onClick={() => handleDeleteComment(comment.comment_id)}
-                      className="delete-btn"
-                    >
-                      Delete
-                    </button>
-                  )}
-                </li>
-              );
-            })}
+            <CommentForm key="key-2" />
+
+            {comments.map((comment, index) => (
+              <li key={comment.comment_id} ref={commentRefs.current[index]}>
+                <h4>{comment.author}</h4>
+                <div>
+                 <div>
+                 <p className="date-time">
+                    {formatISODateTime(comment.created_at)}
+                 </p>
+                 </div>
+                 <CommentVoter comment={comment} />
+                </div>
+                <p>{comment.body}</p>
+                {logedIn && authUser === comment.author && (
+                 <button
+                    onClick={() => handleDeleteComment(comment.comment_id)}
+                    className="delete-btn"
+                 >
+                    Delete
+                 </button>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
       )}
     </>
-  );
+ );
 }
 
 export default AllComments;

@@ -18,7 +18,8 @@
     justify-content: center;
     margin-bottom: 20px;
   }
-  
+
+
   .sortby-container,
   .topics-container {
     flex: 1;
@@ -43,6 +44,28 @@
     background-color: #333;
     color: #fff;
   }
+.img-div{
+  display: flex;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(40%);
+  transition: 500ms;
+}
+.show .img-div{
+  transform: translateX(0);
+  opacity: 1;
+
+}
+.article-name h4{
+  opacity: 0;
+  transform: translateX(-40%);
+  transition: 500ms;
+}
+
+.show h4{
+  transform: translateX(0);
+  opacity: 1;
+}
 
   .delete-btn{
   position: absolute;

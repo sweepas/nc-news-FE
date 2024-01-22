@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getArticleById, patchArticle, postComment } from "../api/api";
 import Voter from "./Voter";
+import AllComments from "./AllComents";
 import "../single-article.css";
 import ErrorPage from "./ErrorPage";
 
@@ -51,7 +52,8 @@ function SingleArticle() {
         <Voter article={article} />
         <p>{article.body}</p>
 
-        <CommentForm />
+        {/* <CommentForm /> */}
+        <AllComments />
       </div>
     </div>
   );

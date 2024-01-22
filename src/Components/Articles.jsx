@@ -1,11 +1,12 @@
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { getArticles, removeArticle } from "../api/api";
 import Voter from "./Voter";
 import ErrorPage from "./ErrorPage";
 import Sortby from "./Sortby";
 import Topics from "./Topics";
 import { useAuth } from "../Context/LoginContext";
+import useIntersectionObserver from "./useIntersectionObserver";
 
 import "../articles.css";
 
@@ -18,13 +19,18 @@ function Articles() {
   const topic = searchParams.get("topic");
   const sortby = searchParams.get("sortby");
 
+  const articleRefs = useRef([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    // console.log("Refs before assignment:", articleRefs.current);
     getArticles(topic, sortby)
       .then((body) => {
+        console.log(body.articles);
         setArticles(body.articles);
         setLoading(false);
+        articleRefs.current = body.articles.map(() => React.createRef());
       })
       .catch((error) => {
         setError(error);
@@ -56,6 +62,8 @@ function Articles() {
     return date.toLocaleDateString(undefined, options);
   }
 
+  useIntersectionObserver(articleRefs, allArticles, 0.8);
+
   if (error) return <ErrorPage />;
   return (
     <>
@@ -69,18 +77,25 @@ function Articles() {
           </div>
           <div className="articles-container">
             <ul>
-              {allArticles.map((article) => (
-                <li className="article-name" key={article.article_id}>
-                  <img
-                    src={article.article_img_url}
-                    alt={`an image of ${article.topic}`}
-                    className="article-img"
-                  />
+              {allArticles.map((article, i) => (
+                <li
+                  className="article-name"
+                  key={article.article_id}
+                  ref={articleRefs.current[i]}
+                >
+                  <div className="img-div">
+                    <img
+                      src={article.article_img_url}
+                      alt={`an image of ${article.topic}`}
+                      className="article-img"
+                    />
+                  </div>
                   <h4>{article.title}</h4>
                   <p>{formatISODateTime(article.created_at)}</p>
                   <div>
                     <Voter article={article} />
                   </div>
+
                   {logedIn && authUser === article.author && (
                     <button
                       onClick={() => handleDeleteArticle(article.article_id)}
@@ -92,7 +107,9 @@ function Articles() {
                   {/* <p>{article.votes}</p> */}
 
                   <div className="article-menu">
-                    <p className="article-p">comments: {article.comment_count}</p>
+                    <p className="article-p">
+                      comments: {article.comment_count}
+                    </p>
                     <p className="article-p"> topic: {article.topic}</p>
                     <Link to={`/articles/${article.article_id}/`}>
                       Read More
