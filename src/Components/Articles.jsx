@@ -80,7 +80,7 @@ function Articles() {
               {allArticles.map((article, i) => (
                 <li
                   className="article-name"
-                  key={article.article_id}
+                  id={article.article_id}
                   ref={articleRefs.current[i]}
                 >
                   <div className="img-div">
@@ -91,8 +91,9 @@ function Articles() {
                     />
                   </div>
                   <h4>{article.title}</h4>
-                  <p>{formatISODateTime(article.created_at)}</p>
-                  <div>
+
+                  <div className="voter-date">
+                    <span>{formatISODateTime(article.created_at)}</span>
                     <Voter article={article} />
                   </div>
 

@@ -30,6 +30,7 @@ function CommentVoter({ comment }) {
   return (
     <div className="comment-voter">
       <p>upvotes: {votes}</p>
+      <div className="voter-btn-container">
       <button
         disabled={userVote === 1 || !logedIn}
         onClick={() => {
@@ -46,6 +47,7 @@ function CommentVoter({ comment }) {
       >
         -
       </button>
+      </div>
     </div>
   );
 }

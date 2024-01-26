@@ -29,22 +29,24 @@ function Voter({ article }) {
   return (
     <div>
       <p>upvotes: {votes}</p>
-      <button
-        disabled={userVote === 1 || !logedIn}
-        onClick={() => {
-          handleClick(1);
-        }}
-      >
-        +
-      </button>
-      <button
-        disabled={userVote === -1 || !logedIn}
-        onClick={() => {
-          handleClick(-1);
-        }}
-      >
-        -
-      </button>
+      <div className="article-voter-btn-container">
+        <button
+          disabled={userVote === 1 || !logedIn}
+          onClick={() => {
+            handleClick(1);
+          }}
+        >
+          +
+        </button>
+        <button
+          disabled={userVote === -1 || !logedIn}
+          onClick={() => {
+            handleClick(-1);
+          }}
+        >
+          -
+        </button>
+      </div>
     </div>
   );
 }

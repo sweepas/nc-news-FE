@@ -9,9 +9,15 @@
     align-items: flex-start ;
     
 }
+.form-container{
+    margin: auto;
+    margin-top: 100px;
+    max-width: 1000px;
+    position: sticky;
+    overflow-y: hidden;
+}
 
-
-.comment-container textarea {
+.form-container textarea {
     margin: 20px;
     padding: 20px;
     width: auto;
@@ -21,14 +27,12 @@
     resize: none;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.2) -25px 25px;
     font-family: 'Courier New', Courier, monospace;
     height: 150px;
-/* }
-.comment-container {
-    margin: 20px;
-    padding: 20px;
-    width: calc(100% - 40px); */
+}
+.form-container button{
+    box-shadow: rgba(0, 0, 0, 0.2) -15px 15px;
 }
 #comment-form{
     display: flex;
@@ -42,12 +46,12 @@
 
 .comment-container li {
     list-style: none;
-    border: 2px solid rgb(201, 199, 199);
+    border: 2px solid #333;
+    /* rgb(201, 199, 199) */
     margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
+    padding: 1em;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     font-family: 'Courier New', Courier, monospace;
     position: relative;
     transition: 250ms;
@@ -57,7 +61,7 @@
     margin: 0%;
 }
 
-.show{
+.comment-container .show{
     background-color: rgb(237, 244, 248);
     opacity: 1 !important;
 }
@@ -72,8 +76,8 @@
     display: flex;
     justify-content: space-between;
     font-weight: bolder;
-    vertical-align: middle;
     text-align: center;
+    align-items: center;
 }
 .delete-btn{ 
     padding: 10px;
@@ -126,5 +130,17 @@
     .comment-container{
         margin: auto;
         padding: 0;
+    }
+    .comment-container div{
+        margin: 0%;
+        margin: auto;
+        text-align: center;
+        align-items: start !important;
+    }
+    .date-time{
+        display: none;
+    }
+    .voter-btn-container{
+        display: inline;
     }
 }
