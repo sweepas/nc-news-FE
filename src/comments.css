@@ -31,6 +31,7 @@
     font-family: 'Courier New', Courier, monospace;
     height: 150px;
     position: sticky;
+    z-index: 10;
 }
 .form-container button{
     box-shadow: rgba(0, 0, 0, 0.6) -15px 15px;
@@ -56,6 +57,7 @@
     position: relative;
     transition: 250ms;
     opacity: .2;
+    z-index: 20;
 }
 .comment-container h4{
     margin: 0%;
