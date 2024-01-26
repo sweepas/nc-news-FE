@@ -31,6 +31,7 @@ function Voter({ article }) {
       <p>upvotes: {votes}</p>
       <div className="article-voter-btn-container">
         <button
+          className="voter-button "
           disabled={userVote === 1 || !logedIn}
           onClick={() => {
             handleClick(1);
@@ -39,6 +40,7 @@ function Voter({ article }) {
           +
         </button>
         <button
+          className="voter-button "
           disabled={userVote === -1 || !logedIn}
           onClick={() => {
             handleClick(-1);

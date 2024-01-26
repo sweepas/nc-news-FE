@@ -60,7 +60,7 @@ function Articles() {
     return date.toLocaleDateString(undefined, options);
   }
 
-  useIntersectionObserver(articleRefs, allArticles, 0.8);
+  useIntersectionObserver(articleRefs, allArticles, 0.8, 'false');
 
   if (error) return <ErrorPage />;
   return (

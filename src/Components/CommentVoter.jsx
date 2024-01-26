@@ -31,22 +31,24 @@ function CommentVoter({ comment }) {
     <div className="comment-voter">
       <p>upvotes: {votes}</p>
       <div className="voter-btn-container">
-      <button
-        disabled={userVote === 1 || !logedIn}
-        onClick={() => {
-          handleClick(1);
-        }}
-      >
-        +
-      </button>
-      <button
-        disabled={userVote === -1 || !logedIn}
-        onClick={() => {
-          handleClick(-1);
-        }}
-      >
-        -
-      </button>
+        <button
+          className="voter-button"
+          disabled={userVote === 1 || !logedIn}
+          onClick={() => {
+            handleClick(1);
+          }}
+        >
+          +
+        </button>
+        <button
+          className="voter-button"
+          disabled={userVote === -1 || !logedIn}
+          onClick={() => {
+            handleClick(-1);
+          }}
+        >
+          -
+        </button>
       </div>
     </div>
   );

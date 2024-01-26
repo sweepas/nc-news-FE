@@ -1,6 +1,6 @@
 import "../home.css";
 
-function Home() {
+function About() {
   return (
     <div className="home-container">
       <h1>Northcoders News</h1>
@@ -33,4 +33,4 @@ function Home() {
     </div>
   );
 }
-export default Home;
+export default About;

@@ -27,12 +27,12 @@ function AddTopic() {
   }
   return (
     <div className="new-topic-container">
-      <label htmlFor="new-topic-form">Add New Topic</label>
       <form className="new-topic-form">
-        <input type="text" placeholder="new topic" onChange={handleTopic} />
+        <input type="text" placeholder="new topic" onChange={handleTopic} name="topic-input"/>
         <br />
         <textarea
           className="topic-text-area"
+          name="topic-textarea"
           placeholder={
             logedIn
               ? "your topic description goes here"

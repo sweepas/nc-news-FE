@@ -54,7 +54,6 @@ function AddArticle() {
 
   return (
     <div className="add-article-container">
-      <label htmlFor="article-form">Add New Article</label>
       <form className="article-form" id="add-article-form" name="article-form-add">
         <br />
         <input type="text" placeholder="your image url" onChange={handleUrl} />

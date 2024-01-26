@@ -1,7 +1,7 @@
 // useIntersectionObserver.js
 import { useEffect, useRef } from 'react';
 
-const useIntersectionObserver = (refs, items, threshold = 1) => {
+const useIntersectionObserver = (refs, items, threshold = 1, removeShowClass) => {
  useEffect(() => {
 
     const observer = new IntersectionObserver(
@@ -9,7 +9,7 @@ const useIntersectionObserver = (refs, items, threshold = 1) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("show");
-          } else {
+          } else if(removeShowClass){
             entry.target.classList.remove("show");
           }
         });

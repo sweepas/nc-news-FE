@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Components/Header";
-import Home from "./Components/Home";
+import Home from "./Components/About";
 import Articles from "./Components/Articles";
 import Nav from "./Components/Nav";
 import SingleArticle from "./Components/SingleArticle";

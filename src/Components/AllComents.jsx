@@ -61,7 +61,7 @@ function AllComments() {
     return date.toLocaleDateString(undefined, options);
   }
 
-  useIntersectionObserver(commentRefs, comments);
+  useIntersectionObserver(commentRefs, comments, 1, false);
 
   if (error) {
     return <ErrorPage />;

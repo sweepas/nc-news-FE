@@ -25,7 +25,7 @@ function Nav() {
           <ul>
             <li>
               <NavLink to="/" className="nav-link">
-                Home
+              About
               </NavLink>
             </li>
             <li>

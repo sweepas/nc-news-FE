@@ -1,6 +1,7 @@
 .add-article-container {
     width: 80%;
     margin: 0 auto;
+    margin-top: 100px;
 }
 
 .add-article-container label {
@@ -27,7 +28,7 @@
     box-sizing: border-box;
     background-color: #f8f8f8;
     resize: none;
-    border: 1px solid #ccc;
+    border: 2px solid #333;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.6) -25px 25px;
     font-family: 'Courier New', Courier, monospace;
@@ -41,7 +42,7 @@
     box-sizing: border-box;
     background-color: #f8f8f8;
     resize: none;
-    border: 1px solid #ccc;
+    border: 2px solid #333;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.6) -25px 25px;
     font-family: 'Courier New', Courier, monospace;
@@ -67,7 +68,8 @@
     box-sizing: border-box;
     background-color: #4caf50;
     box-shadow: rgba(0, 0, 0, 0.6) -25px 25px;
-    color: #fff;
+    color: #333;
+    font-weight: bold;
     border: 2px solid #333;
     border-radius: 5px;
     cursor: pointer;
