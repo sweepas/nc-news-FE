@@ -7,6 +7,9 @@ body{
   margin: 0;
   padding: 0;
 }
+.nav-wraper{
+  height: 60px;
+}
 
 .nav-bar {
   position: fixed;
@@ -22,6 +25,7 @@ body{
   width: 100%;
   min-width: 300px;
   min-height: 50px;
+  max-height: 200px;
   z-index: 1001;
   flex-shrink: 0;
   transition: 250ms;
@@ -31,7 +35,6 @@ body{
   font-size: 1.5em;
   font-weight: bolder;
   color: #333;
-  text-shadow: 0px 10px 0px rgba(0,0,5, 0.2);
   margin: .5rem;
   flex-shrink: 0 !important;
 }
@@ -72,6 +75,7 @@ body{
   width: 30px;
   height: 21px;
   flex-shrink: 0;
+  transition: 250ms;
 }
 .log-icon a{
   position:fixed;
@@ -83,11 +87,7 @@ body{
   min-width: 30px;
   font-weight: bold;
 }
-.log-item{
-  background-color: #333;
-  color: #fff;
-  font-weight: bolder;
-}
+
 .toogle-btn .bar{
   height: 2px;
   width: 100%;
@@ -95,16 +95,29 @@ body{
   border-radius: 5px;
 }
 .login-container{
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 }
 
 .login-container button{
+  border: none;
   color: #333;
-  background-color: #9b5de5;
+  background-color: transparent;
+  font-size: 1em;
   min-width: 35px;
   font-weight: bold;
-  margin-left: 1em;
-  
+  margin: 1em;
+}
+
+.login-container input{
+
+  appearance: none !important;
+  border: 2px solid #333;
+  background-color: #333;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 900;
+  height: 2em;
 }
 .login-container button:hover{
   transform: scale(1.1);
@@ -112,6 +125,7 @@ body{
 
 }
 .hi-span{
+  font-weight: 900;
   background-color: #9b5de5;
   color: #333;
 }
@@ -203,6 +217,8 @@ body{
     padding:.5rem 1rem;
   }
   .login-container{
+    display: flex;
+    flex-direction: column;
     position: fixed;
     right: .5rem;
     margin-right: .5rem

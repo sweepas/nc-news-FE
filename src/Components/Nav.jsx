@@ -7,13 +7,14 @@ import "../nav.css";
 function Nav() {
   const [isActive, setIsActive] = useState(false);
 
-  const handleToggleClick = () => {
-    
+  const handleToggleClick = (event) => {
+    event.preventDefault();
     setIsActive(!isActive);
   };
 
   return (
     <>
+    <div className="nav-wraper">
       <nav className="nav-bar">
         <div className="brand-name">NC NEWS</div>
         <a href="#" className="toogle-btn" onClick={handleToggleClick}>
@@ -24,7 +25,7 @@ function Nav() {
         <div className={`nav-options ${isActive ? "active" : ""}`}>
           <ul>
             <li>
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/" className="nav-link" >
               About
               </NavLink>
             </li>
@@ -47,6 +48,7 @@ function Nav() {
         </div>
         {<LoginDash />}
       </nav>
+      </div>
     </>
   );
 }

@@ -24,7 +24,8 @@ function LoginDash() {
     setAuthUser(username);
   }
 
-  const handleToggleClick = () => {
+  const handleToggleClick = (e) => {
+    e.preventDefault();
     setIsActive(!isActive);
   };
 
@@ -64,7 +65,12 @@ function LoginDash() {
                 handleChange(e);
               }}
             >
-              <input placeholder="unername" className="log-item" type="text" name="input"/>
+              <input
+                placeholder="unername"
+                className="log-item"
+                type="text"
+                name="input"
+              />
               <button
                 className="log-item"
                 onClick={(e) => {

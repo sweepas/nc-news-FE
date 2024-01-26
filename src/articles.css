@@ -10,8 +10,9 @@ body{
   margin: 0;
   padding: 0;
   color: #fff;
-  background-color: #ffff82;
+  background-color: #fee440;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -50,7 +51,7 @@ h1 {
     height: fit-content;
     gap: 3em;
     margin: 10%;
-    background-color: rgb(49, 247, 247);
+    background-color: #00f5d4;
   }
   
   .filter-container {
@@ -99,7 +100,7 @@ h1 {
 .show {
   transform: scale(1.1)!important;
   transition: 250ms;
-  background-color: rgb(49, 247, 247);
+  background-color: #00f5d4;
   box-shadow: rgba(0, 0, 0, 0.6) -25px 25px !important;
 }
 .article-name h4{
