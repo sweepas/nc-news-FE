@@ -29,7 +29,7 @@
     resize: none;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.6) -25px 25px;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -43,7 +43,7 @@
     resize: none;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.6) -25px 25px;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -53,6 +53,7 @@
 }
 
 .author-p{
+    margin-top: 3em;
     color: #333;
     font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
@@ -65,6 +66,7 @@
     margin: 10px 0;
     box-sizing: border-box;
     background-color: #4caf50;
+    box-shadow: rgba(0, 0, 0, 0.6) -25px 25px;
     color: #fff;
     border: none;
     border-radius: 5px;

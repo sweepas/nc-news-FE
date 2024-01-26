@@ -24,10 +24,8 @@ function Articles() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // console.log("Refs before assignment:", articleRefs.current);
     getArticles(topic, sortby)
       .then((body) => {
-        console.log(body.articles);
         setArticles(body.articles);
         setLoading(false);
         articleRefs.current = body.articles.map(() => React.createRef());

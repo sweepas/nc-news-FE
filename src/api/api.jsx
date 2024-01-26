@@ -94,7 +94,6 @@ export const removeArticle = (article_id) => {
 export const addNewTopic = (slug, description) => {
   const url = `/topics`;
   const newTopic = { slug: slug, description: description };
-  console.log(newTopic);
   return request.post(url, newTopic).then((response) => {
     return response;
   });
@@ -103,7 +102,6 @@ export const addNewTopic = (slug, description) => {
 export const patchComment = (comment_id, inc_votes) => {
   const url = `/comments/${comment_id}`
   return request.patch(url, inc_votes).then((response)=>{
-    console.log(response);
     return response
   })
 }

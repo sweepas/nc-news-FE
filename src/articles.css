@@ -96,9 +96,8 @@ h1 {
 .show {
   transform: scale(1.1)!important;
   transition: 250ms;
-  background-color: aqua;
-  /* transform: translateX(20px) translateY(-20px) translateZ(10px); */
-  box-shadow: rgba(0, 0, 0, 0.2) -25px 25px !important;
+  background-color: rgb(49, 247, 247);
+  box-shadow: rgba(0, 0, 0, 0.6) -25px 25px !important;
 }
 .article-name h4{
   opacity: 0;
@@ -150,6 +149,9 @@ h1 {
     font-size: 1.2em;
     margin: 0;
   }
+  .article-voter-btn-container{
+    display: inline;
+  }
   
   .article-menu {
     display: flex;
@@ -188,7 +190,8 @@ h1 {
     .article-img{
       width: auto;
     }
-  
+    .article-voter-btn-container{
+      display: inline !important;    }
     .sortby-container,
     .topics-container {
       width: 100%;
@@ -210,19 +213,29 @@ h1 {
     .article-name {
       padding: 5px;
     }
+    .voter-date span{
+      display: none !important;
+    }
     .articles-container{
       margin: 5px;
     }
+    .article-voter-btn-container{
+      display: inline !important;    }
   }
 
   @media  (max-width: 600px){
     .article-p{
       display: none;
     }
+    .article-voter-btn-container{
+      display: inline !important;    }
   }
   @media (max-width: 993px){
     .topic-container-div .filter-container{
       display: flex;
       flex-direction: column;
+    }
+    .article-voter-btn-container{
+      display: inline !important;
     }
   }

@@ -1,6 +1,5 @@
-import { CommentForm } from "./CommentForm";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getArticleById, patchArticle, postComment } from "../api/api";
 import Voter from "./Voter";
 import AllComments from "./AllComents";
@@ -38,6 +37,7 @@ function SingleArticle() {
   return (
     <div className="single-article-page">
       <div className="single-article-container ">
+        <div className="single-article">
         <h2>{article.title}</h2>
         <p>{article.created_at}</p>
         <p>by {article.author}</p>
@@ -47,12 +47,11 @@ function SingleArticle() {
         />
         <p>Comment count {article.comment_count}</p>
         <p>{article.votes}</p>
-        <Link to={`/articles/${article_id}/comments`}>All comments</Link>
+       
         <p>Topics: {article.topic}</p>
         <Voter article={article} />
         <p>{article.body}</p>
-
-        {/* <CommentForm /> */}
+        </div>
         <AllComments />
       </div>
     </div>
