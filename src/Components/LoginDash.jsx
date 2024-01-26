@@ -59,11 +59,12 @@ function LoginDash() {
           <span>
             <form
               id="log-form"
+              name="form-name"
               onChange={(e) => {
                 handleChange(e);
               }}
             >
-              <input placeholder="unername" className="log-item" type="text" />
+              <input placeholder="unername" className="log-item" type="text" name="input"/>
               <button
                 className="log-item"
                 onClick={(e) => {

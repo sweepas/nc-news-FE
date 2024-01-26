@@ -45,13 +45,13 @@
     box-sizing: border-box;
     background-color: #4caf50;
     box-shadow: rgba(0, 0, 0, 0.6) -25px 25px;
-    color: #fff;
-    border: none;
+    color: #333;
+    border: 2px solid #333;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .new-topic-container button:disabled {
-    background-color: #ccc;
+    background-color: #4caf50;
     cursor: not-allowed;
 }

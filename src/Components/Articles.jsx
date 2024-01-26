@@ -80,6 +80,7 @@ function Articles() {
                   className="article-name"
                   id={article.article_id}
                   ref={articleRefs.current[i]}
+                  key={article.article_id}
                 >
                   <div className="img-div">
                     <img

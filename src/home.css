@@ -34,12 +34,11 @@
   }
   
   ol {
-    list-style: decimal;
+    list-style: none;
     margin-top: 10px;
     margin-bottom: 20px;
   }
   
   li {
-    margin-bottom: 10px;
     color: #444;
   }

@@ -14,18 +14,24 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  color: #fff;
+  background-color: #9b5de5;
+  box-shadow: rgba(0, 0, 0, 0.6) -15px 15px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  color: #333;
   width: 100%;
   min-width: 300px;
+  height: 50px;
   z-index: 1001;
   flex-shrink: 0;
+  transition: 250ms;
 }
 
 .brand-name{
-  font-size: 20px;
+  font-size: 1.5em;
   font-weight: bolder;
-  color: #fff;
+  color: #333;
+  text-shadow: 0px 10px 0px rgba(0,0,5, 0.2);
   margin: .5rem;
   flex-shrink: 0 !important;
 }
@@ -41,17 +47,19 @@ body{
   list-style: none;
   justify-content: space-between;
   font-weight:900;
-
+  transition: 150ms;
 }
 .nav-link{
   text-decoration: none;
-  color:#fff;
+  color:#333;
   padding:1rem 2rem;
   display: block;
 }
 
 .nav-options li:hover{
-  background-color: #555;
+  transform: scale(1.1);
+  text-shadow: 0px 10px 0px rgba(0,0,5, 0.2);
+  transition: 150ms;
 }
 .toogle-btn{
   position:fixed;
@@ -71,15 +79,19 @@ body{
   right: .5rem;
   display: none;
   text-decoration: none;
-  color: #fff;
+  color: #333;
   min-width: 30px;
   font-weight: bold;
 }
-
+.log-item{
+  background-color: #333;
+  color: #fff;
+  font-weight: bolder;
+}
 .toogle-btn .bar{
   height: 2px;
   width: 100%;
-  background-color: #fff;
+  background-color: #333;
   border-radius: 5px;
 }
 .login-container{
@@ -87,17 +99,22 @@ body{
 }
 
 .login-container button{
-  color: #fff;
-  background-color: #333;
+  color: #333;
+  background-color: #9b5de5;
   min-width: 35px;
   font-weight: bold;
+  margin-left: 1em;
   
 }
 .login-container button:hover{
   transform: scale(1.1);
-  
-}
+  text-shadow: 0px 10px 0px rgba(0,0,5, 0.2);
 
+}
+.hi-span{
+  background-color: #9b5de5;
+  color: #333;
+}
 
 @media  (max-width: 800px) {
   .log-icon{

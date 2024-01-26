@@ -41,7 +41,7 @@ function SingleArticle() {
         <h2>{article.title}</h2>
         <p>{article.created_at}</p>
         <p>by {article.author}</p>
-        <img
+        <img className="article-img"
           src={article.article_img_url}
           alt={`an image of ${article.topic}`}
         />
