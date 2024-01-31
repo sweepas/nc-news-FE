@@ -129,6 +129,29 @@ body{
   background-color: #9b5de5;
   color: #333;
 }
+.sort-options button{
+  background: #00bbf9;
+  border: 2px solid #333;
+  border-radius: 5px;
+  padding: .5em;
+  margin: .5em;
+  box-shadow: rgba(0, 0, 0, 0.6) -5px 5px;
+}
+
+.topic-btn{
+  background: #00bbf9;
+  border: 2px solid #333;
+  border-radius: 5px;
+  padding: .5em;
+  margin: .5em;
+  box-shadow: rgba(0, 0, 0, 0.6) -5px 5px;
+}
+.selected{
+  color: #333;
+  box-shadow: rgba(0, 0, 0, 0.6) -13px 13px !important;
+  transform: scale(1.05);
+  font-weight: 900;
+}
 
 @media  (max-width: 800px) {
   .log-icon{

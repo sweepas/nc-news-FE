@@ -85,8 +85,8 @@ h1 {
     font-weight: bold;
   }
   .selected{
-    background-color: #333;
     color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.6) -15px 15px 
   }
 .img-div{
   display: flex;

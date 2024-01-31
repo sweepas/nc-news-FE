@@ -26,15 +26,16 @@ function Topics({ update }) {
   return (
     <div className="topic-container-div">
       <p>Topic of choice: {selectedOption}</p>
-      <button type="reset" onClick={() => handleResetClick("")}>
+      <button className="topic-btn" type="reset" onClick={() => handleResetClick("")}>
         All topics
       </button>
       {topics.map((topic) => {
         return (
           <button
-            className={selectedOption === topic.slug ? "selected" : ""}
+          className={`topic-btn ${selectedOption === topic.slug ? "selected" : ""}`}
             key={topic.slug}
             onClick={() => handleChange(topic.slug)}
+        
           >
             {topic.slug}
           </button>
