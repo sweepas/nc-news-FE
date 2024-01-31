@@ -21,19 +21,19 @@ function Sortby({ update }) {
           className={selectedOption === "created_at" ? "selected" : ""}
           onClick={() => handleButtonClick("created_at")}
         >
-          most recent
+          date
         </button>
         <button
           className={selectedOption === "votes" ? "selected" : ""}
           onClick={() => handleButtonClick("votes")}
         >
-          most voted
+          votes
         </button>
         <button
           className={selectedOption === "comment_count" ? "selected" : ""}
           onClick={() => handleButtonClick("comment_count")}
         >
-          comment count
+          comments
         </button>
         <button
           type="reset"
