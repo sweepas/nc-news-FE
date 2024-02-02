@@ -3,6 +3,13 @@
   margin: 0;
   box-sizing: border-box;
 }
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative
+}
+
 
 
 body{
@@ -11,7 +18,6 @@ body{
   padding: 0;
   background-color: #fee440;
   width: 100vw;
-  overflow-x: hidden;
 }
 .articles-container::-webkit-scrollbar {
   display: none;
@@ -233,6 +239,9 @@ h1 {
     .sort-options {
       flex-wrap: wrap;
     }
+    .articles-container::-webkit-scrollbar {
+      display: none;
+    }
   
     .sort-options a {
       width: 100%;
@@ -253,6 +262,9 @@ h1 {
     }
     .article-voter-btn-container{
       display: inline !important;    }
+      .articles-container::-webkit-scrollbar {
+        display: none;
+      }
   }
 
   @media  (max-width: 600px){
@@ -261,6 +273,9 @@ h1 {
     }
     .article-voter-btn-container{
       display: inline !important;    }
+      .articles-container::-webkit-scrollbar {
+        display: none;
+      }
   }
   @media (max-width: 993px){
     .topic-container-div .filter-container{
