@@ -101,7 +101,7 @@ function Articles() {
                       onClick={() => handleDeleteArticle(article.article_id)}
                       className="delete-btn"
                     >
-                      Delete Article
+                      Delete
                     </button>
                   )}
                   {/* <p>{article.votes}</p> */}
